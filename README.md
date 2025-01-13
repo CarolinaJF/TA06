@@ -19,24 +19,7 @@ Este manual presenta una visión general sobre la **realización de la TA06** en
 El objetivo principal es proporcionar información estructurada y accesible para comprender cómo se han realizado las siguientes tareas. Se facilita información **concisa y práctica** sobre los recursos a los que hemos recurido y desafíos que a suponido completar esta práctica.  
 
 > **¿Sabías que...?**  
-> La Inteligencia Artificial es clave para optimizar procesos, mejorar la seguridad informática y analizar grandes volúmenes de datos de manera eficiente.
-
----
-
-## 🚀 **¿A quién está dirigido?**
-
-Este manual está especialmente diseñado para:  
-
-- **Estudiantes** de ASIX que desean entender la importancia de la IA en su ámbito profesional.  
-- **Profesionales de IT** interesados en implementar soluciones de IA en sus sistemas y redes.  
-- **Educadores** que buscan recursos estructurados y actualizados sobre la IA aplicada a ASIX.  
-
-## 📬 **Contacto**
-
-¿Tienes dudas, sugerencias o comentarios? ¡Nos encantaría escucharte!  
-
-- 📧 **Email:** [Soporte](mailto:ia.mds@itb.cat)  
-- 🌐 **Sitio web:** [https://itb.cat/](https://itb.cat/)
+> Para poder realizar la tasca ha sido fundamental la ayuda de IAs de apoyo para programar, en nuestro caso hemos usado principalmente Copilot como asistente de apoyo a la hora de desarrollar ciertos programas complejos.
 
 ---
 
@@ -47,4 +30,4 @@ Este manual ha sido desarrollado para fines educativos y profesionales, respetan
 
 ---
 
-[**⬆️ Volver al inicio**](#-manual-de-inteligencia-artificial-ia)
+[**⬆️ Volver al inicio**](#-Realización-TA06)
