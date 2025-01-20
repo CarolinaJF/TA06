@@ -1,15 +1,248 @@
-ERROR: Más de 31 dias en la fila del archivo E01/ayuda1/precip.P1.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 3, dias: 42
-ERROR: Más de 31 dias en la fila del archivo E01/ayuda1/precip.P1.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 142, dias: 32
-Archivo: E01/ayuda1/precip.P1.MIROC5.RCP60.2006-2100.REGRESION.dat
-Línea 142
-Columnas: ['2017', '11', '20', '0', '16', '23', '17', '17', '16', '0', '8', '0', '0', '10', '0', '0', '17', '0', '0', '8', '0', '15', '18', '19', '0', '0', '6', '0', '0', '0', '0', '0', '-999', 'precip.MIROC5.RCP60.2006-2100.SDSM_REJ']
-Caracteres no deseados: ['precip.MIROC5.RCP60.2006-2100.SDSM_REJ']
-
-
-Resumen Final:
-Total de archivos procesados: 4
-Total de líneas procesadas: 4557
-Total de valores procesados (excluyendo -999): 150392
-Total de valores faltantes (-999): 2658
-Porcentaje de valores faltantes sobre el total de valores: 1.77%
-
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 3, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 4, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 5, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 6, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 7, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 9, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 10, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 11, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 12, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 13, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 14, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 15, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 16, valor: 30
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 17, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 18, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 19, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 20, valor: 36
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 21, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 22, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 23, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 24, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 25, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 26, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 27, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 28, valor: 293
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 29, valor: 15
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 30, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 31, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 32, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 33, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 34, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 35, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 36, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 37, valor: 32
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 38, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 39, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 40, valor: 24
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 41, valor: 72
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 42, valor: 72
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 43, valor: 49
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 44, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 45, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 46, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 47, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 48, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 49, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 50, valor: 21
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 51, valor: 27
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 52, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 53, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 54, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 55, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 56, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 57, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 58, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 59, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 60, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 61, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 62, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 63, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 64, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 65, valor: 116
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 66, valor: 16
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 67, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 68, valor: 0
+ERROR: El mes de la columna 3 no sigue el patrón de meses en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 69, valor: 4, año: None
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 70, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 71, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 72, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 73, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 74, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 75, valor: 173
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 76, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 77, valor: 41
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 78, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 79, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 80, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 81, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 82, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 83, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 84, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 85, valor: 28
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 86, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 87, valor: 47
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 88, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 89, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 90, valor: 91
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 91, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 92, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 93, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 94, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 95, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 96, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 97, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 98, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 99, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 100, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 101, valor: 62
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 102, valor: 40
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 103, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 104, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 105, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 106, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 107, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 108, valor: 15
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 109, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 111, valor: 0
+ERROR: El mes de la columna 3 no sigue el patrón de meses en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 112, valor: 12, año: None
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 113, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 114, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 115, valor: 140
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 116, valor: 0
+ERROR: El mes de la columna 3 no sigue el patrón de meses en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 117, valor: 7, año: None
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 118, valor: 0
+ERROR: El mes de la columna 3 no sigue el patrón de meses en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 119, valor: 3, año: None
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 120, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 121, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 122, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 123, valor: 16
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 124, valor: 29
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 125, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 126, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 127, valor: 15
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 128, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 129, valor: 0
+ERROR: El mes de la columna 3 no sigue el patrón de meses en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 130, valor: 4, año: None
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 131, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 132, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 133, valor: 0
+ERROR: El mes de la columna 3 no sigue el patrón de meses en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 134, valor: 10, año: None
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 135, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 136, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 137, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 138, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 139, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 140, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 141, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 142, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 143, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 144, valor: 0
+ERROR: El mes de la columna 3 no sigue el patrón de meses en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 145, valor: 12, año: None
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 146, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 147, valor: 102
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 148, valor: 64
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 149, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 150, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 151, valor: 51
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 152, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 153, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 154, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 155, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 156, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 157, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 158, valor: 26
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 159, valor: 144
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 160, valor: 128
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 161, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 162, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 163, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 164, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 165, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 166, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 167, valor: 14
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 168, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 169, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 170, valor: 139
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 171, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 172, valor: 0
+ERROR: El mes de la columna 3 no sigue el patrón de meses en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 173, valor: 12, año: None
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 174, valor: 69
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 175, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 176, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 177, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 178, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 179, valor: 14
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 180, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 181, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 182, valor: 84
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 183, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 184, valor: 42
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 185, valor: 31
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 186, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 187, valor: 85
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 188, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 189, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 190, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 191, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 192, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 193, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 194, valor: 0
+ERROR: El mes de la columna 3 no sigue el patrón de meses en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 195, valor: 10, año: None
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 196, valor: 188
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 197, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 198, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 199, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 200, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 201, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 202, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 203, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 204, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 205, valor: 50
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 206, valor: 26
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 207, valor: 19
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 208, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 209, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 210, valor: 32
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 211, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 212, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 213, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 214, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 215, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 216, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 217, valor: 133
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 218, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 219, valor: 21
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 220, valor: 194
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 221, valor: 36
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 222, valor: 37
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 223, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 224, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 225, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 226, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 227, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 228, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 229, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 230, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 231, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 232, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 233, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 234, valor: 33
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 235, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 236, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 237, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 238, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 239, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 240, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 241, valor: 24
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 242, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 243, valor: 34
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 244, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 245, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 246, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 247, valor: 95
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 248, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 249, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 250, valor: 0
+ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 251, valor: 0
+ERROR: El mes de la columna 3 no sigue el patrón de meses en el archivo E01/ayuda1/precip.P5.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 252, valor: 5, año: None

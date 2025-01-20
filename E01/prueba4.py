@@ -36,6 +36,10 @@ with open(archivo_log, 'a') as log:
                 total_archivos += 1  # Contamos el archivo procesado
                 lineas_archivo = 0  # Contador de líneas procesadas en este archivo
 
+                # Variables para controlar el mes de cada año
+                meses_por_ano = {}  # Diccionario para llevar el conteo de meses por cada año
+                year = None  # Año actual procesado
+
                 # Verificar si hay líneas vacías entre las filas (esto incluye líneas que solo contienen espacios)
                 for i, linea in enumerate(lines[2:]):  # Empezamos desde la tercera línea
                     lineas_archivo += 1
@@ -44,6 +48,10 @@ with open(archivo_log, 'a') as log:
 
                     # Obtener las columnas de la línea actual
                     columnas = linea.split()  # Suponemos que se usa el espacio como delimitador
+
+                    # Verificar que la cantidad de valores en la fila no supere 34
+                    if len(columnas) > 34:
+                        log.write(f"ERROR: Más de 34 valores en la fila del archivo {archivo}, línea {i+3}, valores: {len(columnas)}\n")
 
                     # Verificar el formato de la primera columna (PX donde X es un número)
                     primera_columna = columnas[0]  # La primera columna no debe ser ignorada
@@ -71,6 +79,30 @@ with open(archivo_log, 'a') as log:
                         except ValueError:
                             # Si no es un número válido, añadir a los caracteres no deseados
                             caracteres_no_deseados.append(columna)
+
+                    # Verificación de la columna 3 (mes)
+                    columna_mes = columnas[2] if len(columnas) > 2 else None  # La columna 3 (índice 2)
+                    
+                    if columna_mes:
+                        try:
+                            mes = int(columna_mes)
+                            if mes < 1 or mes > 12:
+                                log.write(f"ERROR: El valor de la columna 3 no es un mes válido (1-12) en el archivo {archivo}, línea {i+3}, valor: {columna_mes}\n")
+                            else:
+                                # Comprobamos que el mes sigue el patrón secuencial dentro de un año
+                                if year not in meses_por_ano:
+                                    meses_por_ano[year] = 0  # Inicializamos el contador de meses para este año
+                                
+                                # Comprobamos que el mes sea el siguiente en el patrón
+                                if mes != meses_por_ano[year] + 1:
+                                    log.write(f"ERROR: El mes de la columna 3 no sigue el patrón de meses en el archivo {archivo}, línea {i+3}, valor: {columna_mes}, año: {year}\n")
+                                
+                                # Incrementamos el mes procesado para este año
+                                meses_por_ano[year] += 1
+                                if meses_por_ano[year] == 12:  # Si ya procesamos 12 meses, pasamos al siguiente año
+                                    year += 1
+                        except ValueError:
+                            log.write(f"ERROR: La columna 3 no tiene un valor numérico en el archivo {archivo}, línea {i+3}, valor: {columna_mes}\n")
 
                     # Si se encontraron caracteres no deseados, escribir en el log
                     if caracteres_no_deseados:
@@ -105,7 +137,5 @@ print(f"Total de líneas procesadas: {total_lineas}")
 print(f"Total de valores procesados (excluyendo -999): {total_valores}")
 print(f"Total de valores faltantes (-999): {total_faltantes}")
 print(f"Porcentaje de valores faltantes sobre el total de valores: {porcentaje_faltantes:.2f}%")
-
-
 
 
