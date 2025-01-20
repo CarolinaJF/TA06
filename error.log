@@ -1,0 +1,15 @@
+ERROR: Más de 31 dias en la fila del archivo E01/ayuda1/precip.P1.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 3, dias: 42
+ERROR: Más de 31 dias en la fila del archivo E01/ayuda1/precip.P1.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 142, dias: 32
+Archivo: E01/ayuda1/precip.P1.MIROC5.RCP60.2006-2100.REGRESION.dat
+Línea 142
+Columnas: ['2017', '11', '20', '0', '16', '23', '17', '17', '16', '0', '8', '0', '0', '10', '0', '0', '17', '0', '0', '8', '0', '15', '18', '19', '0', '0', '6', '0', '0', '0', '0', '0', '-999', 'precip.MIROC5.RCP60.2006-2100.SDSM_REJ']
+Caracteres no deseados: ['precip.MIROC5.RCP60.2006-2100.SDSM_REJ']
+
+
+Resumen Final:
+Total de archivos procesados: 4
+Total de líneas procesadas: 4557
+Total de valores procesados (excluyendo -999): 150392
+Total de valores faltantes (-999): 2658
+Porcentaje de valores faltantes sobre el total de valores: 1.77%
+

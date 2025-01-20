@@ -45,10 +45,6 @@ with open(archivo_log, 'a') as log:
                     # Obtener las columnas de la línea actual
                     columnas = linea.split()  # Suponemos que se usa el espacio como delimitador
 
-                    # Verificar que la cantidad de valores en la fila no supere 34
-                    if len(columnas) > 34:
-                        log.write(f"ERROR: Más de 31 dias en la fila del archivo {archivo}, línea {i+3}, dias: {len(columnas)-3}\n")
-
                     # Verificar el formato de la primera columna (PX donde X es un número)
                     primera_columna = columnas[0]  # La primera columna no debe ser ignorada
                     if not re.match(r'P\d+', primera_columna):  # Comprobar que la primera columna siga el formato 'P' seguido de un número
@@ -109,3 +105,7 @@ print(f"Total de líneas procesadas: {total_lineas}")
 print(f"Total de valores procesados (excluyendo -999): {total_valores}")
 print(f"Total de valores faltantes (-999): {total_faltantes}")
 print(f"Porcentaje de valores faltantes sobre el total de valores: {porcentaje_faltantes:.2f}%")
+
+
+
+
