@@ -4,14 +4,14 @@ import re  # Para usar expresiones regulares
 from tqdm import tqdm  # Importamos tqdm para la barra de progreso
 
 # Ruta personalizada para los archivos de log (puedes cambiar esta ruta)
-ruta_log = 'E01'  # Cambia esto por la ruta deseada, por ejemplo: 'C:/mis_logs' o '/home/usuario/logs'
+ruta_log = 'E02'  # Cambia esto por la ruta deseada, por ejemplo: 'C:/mis_logs' o '/home/usuario/logs'
 
 # Verificar si la ruta existe, si no, crearla
 if not os.path.exists(ruta_log):
     os.makedirs(ruta_log)
 
 # Ruta de la carpeta que contiene los archivos .dat
-carpeta = 'E01/precip.MIROC5.RCP60.2006-2100.SDSM_REJ'
+carpeta = 'E01/ayuda1'
 
 # Patrón para buscar archivos .dat
 patron = '*.dat'
@@ -53,7 +53,7 @@ with open(archivo_log, 'a') as log:
                 # Verificar la primera fila
                 primera_fila = lines[0].strip().split()
                 if primera_fila != parametros_primera_fila:
-                    log.write(f"ERROR: La primera fila en el archivo {archivo} no contiene los parámetros esperados: {parametros_primera_fila}, encontrada: {primera_fila}\n")
+                    log.write(f"ERROR: La primera fila en el archivo {archivo} no contiene los parámetros esperados: {parametros_primera_fila}, encontrada: {primera_fila}\n\n")
 
                 # Obtener la segunda línea (que contiene los parámetros esperados)
                 segunda_linea = lines[1].strip().split()
@@ -68,18 +68,18 @@ with open(archivo_log, 'a') as log:
                     try:
                         float(columna2)
                     except ValueError:
-                        log.write(f"ERROR: La columna 2 (valor: {columna2}) no es un número válido en el archivo {archivo}, línea 2\n")
+                        log.write(f"ERROR: La columna 2 (valor: {columna2}) no es un número válido en el archivo {archivo}, línea 2\n\n")
 
                     try:
                         float(columna3)
                     except ValueError:
-                        log.write(f"ERROR: La columna 3 (valor: {columna3}) no es un número válido en el archivo {archivo}, línea 2\n")
+                        log.write(f"ERROR: La columna 3 (valor: {columna3}) no es un número válido en el archivo {archivo}, línea 2\n\n")
 
                     # Verificar que las columnas 4 a 7 coincidan con los valores fijos
                     if columnas_fijas != parametros_segunda_fila_fija:
-                        log.write(f"ERROR: La segunda fila no coincide con los valores esperados en el archivo {archivo}, línea 2. Esperado: {parametros_segunda_fila_fija}, encontrado: {columnas_fijas}\n")
+                        log.write(f"ERROR: La segunda fila no coincide con los valores esperados en el archivo {archivo}, línea 2. Esperado: {parametros_segunda_fila_fija}, encontrado: {columnas_fijas}\n\n")
                 else:
-                    log.write(f"ERROR: La segunda fila en el archivo {archivo} no tiene suficientes columnas para la validación en línea 2\n")
+                    log.write(f"ERROR: La segunda fila en el archivo {archivo} no tiene suficientes columnas para la validación en línea 2\n\n")
 
                 # Obtener el ID del pluviómetro desde la primera columna de la segunda línea
                 id_pluviometro = segunda_linea[0]  # La primera columna en la segunda línea
@@ -88,7 +88,7 @@ with open(archivo_log, 'a') as log:
                 for i, linea in enumerate(lines[2:], start=3):  # Empezamos desde la tercera línea
                     lineas_archivo += 1
                     if not linea.strip():  # Si la línea está vacía o solo contiene espacios en blanco
-                        log.write(f"ERROR: Línea vacía detectada en el archivo {archivo}, línea {i}\n")
+                        log.write(f"ERROR: Línea vacía detectada en el archivo {archivo}, línea {i}\n\n")
                         continue
 
                     # Dividir las columnas usando re.split para manejar espacios múltiples
@@ -96,11 +96,11 @@ with open(archivo_log, 'a') as log:
 
                     # Verificar que el ID del pluviómetro en la primera columna coincida con el de la segunda línea
                     if columnas[0] != id_pluviometro:
-                        log.write(f"ERROR: El ID del pluviómetro no coincide en el archivo {archivo}, línea {i}, valor esperado: {id_pluviometro}, encontrado: {columnas[0]}\n")
+                        log.write(f"ERROR: El ID del pluviómetro no coincide en el archivo {archivo}, línea {i}, valor esperado: {id_pluviometro}, encontrado: {columnas[0]}\n\n")
 
                     # Verificar que la cantidad de valores en la fila no supere 34
                     if len(columnas) > 34:
-                        log.write(f"ERROR: Más de 31 días en la fila del archivo {archivo}, línea {i}, días: {len(columnas)-3}\n")
+                        log.write(f"ERROR: Más de 31 días en la fila del archivo {archivo}, línea {i}, días: {len(columnas)-3}\n\n")
 
                     # Validar la columna 2 (años)
                     if len(columnas) > 1:
@@ -133,8 +133,7 @@ with open(archivo_log, 'a') as log:
                     if caracteres_no_deseados:
                         log.write(f"Archivo: {archivo}\n")
                         log.write(f"Línea {i}\n")  # Número de línea real
-                        log.write(f"Caracteres no deseados: {caracteres_no_deseados}\n")
-                        log.write('\n')
+                        log.write(f"Caracteres no deseados: {caracteres_no_deseados}\n\n")
 
                 total_lineas += lineas_archivo  # Contamos las líneas procesadas en este archivo
 
@@ -146,11 +145,10 @@ else:
 
 # Escribir los resúmenes en el log de resultados
 with open(archivo_log, 'a') as log:
-    log.write("\nResumen Final:\n")
+    log.write("Resumen Final:\n")
     log.write(f"Total de archivos procesados: {total_archivos}\n")
     log.write(f"Total de líneas procesadas: {total_lineas}\n")
     log.write(f"Total de valores procesados (excluyendo -999): {total_valores}\n")
     log.write(f"Total de valores faltantes (-999): {total_faltantes}\n")
-    log.write(f"Porcentaje de valores faltantes sobre el total de valores: {porcentaje_faltantes:.2f}%\n")
-    log.write('\n')
+    log.write(f"Porcentaje de valores faltantes sobre el total de valores: {porcentaje_faltantes:.2f}%\n\n")
 
