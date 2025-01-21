@@ -80,7 +80,6 @@ with open(archivo_log, 'a') as log:
                     if caracteres_no_deseados:
                         log.write(f"Archivo: {archivo}\n")
                         log.write(f"Línea {i+3}\n")  # Número de línea real
-                        log.write(f"Columnas: {columnas}\n")
                         log.write(f"Caracteres no deseados: {caracteres_no_deseados}\n")
                         log.write('\n')
 
@@ -102,10 +101,3 @@ with open(archivo_log, 'a') as log:
     log.write(f"Porcentaje de valores faltantes sobre el total de valores: {porcentaje_faltantes:.2f}%\n")
     log.write('\n')
 
-# Imprimir en consola el resumen final
-print("\nResumen Final:")
-print(f"Total de archivos procesados: {total_archivos}")
-print(f"Total de líneas procesadas: {total_lineas}")
-print(f"Total de valores procesados (excluyendo -999): {total_valores}")
-print(f"Total de valores faltantes (-999): {total_faltantes}")
-print(f"Porcentaje de valores faltantes sobre el total de valores: {porcentaje_faltantes:.2f}%")
