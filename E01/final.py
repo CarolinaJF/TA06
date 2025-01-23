@@ -19,14 +19,151 @@ patron = '*.dat'
 # Obtener la lista de archivos .dat en la carpeta
 archivos = glob.glob(os.path.join(carpeta, patron))
 
-# Crear un archivo de log para guardar los resultados (modo 'a' para no sobrescribir)
-archivo_resultados = os.path.join(ruta_log, 'resultados_globales.log')
+# Crear un archivo de log para guardar los errores (modo 'a' para no sobrescribir)
+archivo_log = os.path.join(ruta_log, 'pruebas.log')
+
+# Inicializamos contadores globales
+total_valores = 0
+total_faltantes = 0
+total_archivos = 0
+total_lineas = 0
+
+# Parámetros esperados para la primera fila
+parametros_primera_fila = ['precip', 'MIROC5', 'RCP60', 'REGRESION', 'decimas', '1']
+
+# Parámetros esperados para la segunda fila (columnas fijas)
+parametros_segunda_fila_fija = ['182', 'geo', '2006', '2100', '-1']
+
+# Inicializamos la barra de progreso con tqdm
+with open(archivo_log, 'a') as log:
+    # Usamos tqdm para la barra de progreso en los archivos
+    for archivo in tqdm(archivos, desc="Validando archivos", unit="archivo"):
+        with open(archivo, 'r') as f:
+            contenido = f.read()
+
+            # Dividir el contenido en líneas, eliminando líneas vacías al final del archivo
+            lines = contenido.strip().split('\n')
+
+            # Verificar que haya suficientes líneas para evitar errores de índice
+            if len(lines) > 2:  # Empezamos desde la segunda línea
+                total_archivos += 1  # Contamos el archivo procesado
+                lineas_archivo = 0  # Contador de líneas procesadas en este archivo
+
+                # Verificar la primera fila
+                primera_fila = lines[0].strip().split()
+                if primera_fila != parametros_primera_fila:
+                    log.write(f"ERROR: La primera fila en el archivo {archivo} no contiene los parámetros esperados: {parametros_primera_fila}, encontrada: {primera_fila}\n\n")
+
+                # Obtener la segunda línea (que contiene los parámetros esperados)
+                segunda_linea = lines[1].strip().split()
+
+                # Verificar las columnas 2 y 3 (variables) y el resto de columnas fijas
+                if len(segunda_linea) >= 4:
+                    columna2 = segunda_linea[1]
+                    columna3 = segunda_linea[2]
+                    columnas_fijas = segunda_linea[3:]
+
+                    # Verificar que las columnas 2 y 3 sean números
+                    try:
+                        float(columna2)
+                    except ValueError:
+                        log.write(f"ERROR: La columna 2 (valor: {columna2}) no es un número válido en el archivo {archivo}, línea 2\n\n")
+
+                    try:
+                        float(columna3)
+                    except ValueError:
+                        log.write(f"ERROR: La columna 3 (valor: {columna3}) no es un número válido en el archivo {archivo}, línea 2\n\n")
+
+                    # Verificar que las columnas 4 a 7 coincidan con los valores fijos
+                    if columnas_fijas != parametros_segunda_fila_fija:
+                        log.write(f"ERROR: La segunda fila no coincide con los valores esperados en el archivo {archivo}, línea 2. Esperado: {parametros_segunda_fila_fija}, encontrado: {columnas_fijas}\n\n")
+                else:
+                    log.write(f"ERROR: La segunda fila en el archivo {archivo} no tiene suficientes columnas para la validación en línea 2\n\n")
+
+                # Obtener el ID del pluviómetro desde la primera columna de la segunda línea
+                id_pluviometro = segunda_linea[0]  # La primera columna en la segunda línea
+
+                # Procesar las líneas desde la tercera
+                for i, linea in enumerate(lines[2:], start=3):  # Empezamos desde la tercera línea
+                    lineas_archivo += 1
+                    if not linea.strip():  # Si la línea está vacía o solo contiene espacios en blanco
+                        log.write(f"ERROR: Línea vacía detectada en el archivo {archivo}, línea {i}\n\n")
+                        continue
+
+                    # Dividir las columnas usando re.split para manejar espacios múltiples
+                    columnas = re.split(r'\s+', linea.strip())
+
+                    # Verificar que el ID del pluviómetro en la primera columna coincida con el de la segunda línea
+                    if columnas[0] != id_pluviometro:
+                        log.write(f"ERROR: El ID del pluviómetro no coincide en el archivo {archivo}, línea {i}, valor esperado: {id_pluviometro}, encontrado: {columnas[0]}\n\n")
+
+                    # Verificar que la cantidad de valores en la fila no supere 34
+                    if len(columnas) > 34:
+                        log.write(f"ERROR: Más de 31 días en la fila del archivo {archivo}, línea {i}, días: {len(columnas)-3}\n\n")
+
+                    # Validar la columna 2 (años)
+                    if len(columnas) > 1:
+                        anio = columnas[1]
+                        if re.match(r'^\d{4}$', anio):  # Verificar que sea un año válido
+                            pass  # Comentado ya que no se necesita el manejo del año ahora
+
+                    # Excluir la primera columna para las demás verificaciones
+                    columnas = columnas[1:]
+
+                    # Verificar si las columnas contienen caracteres no deseados y contar los valores
+                    caracteres_no_deseados = []
+                    for columna in columnas:
+                        try:
+                            # Intentar convertir a número flotante
+                            numero = float(columna)
+                            total_valores += 1  # Contamos un valor procesado
+
+                            if numero == -999:
+                                total_faltantes += 1  # Contamos el valor faltante
+                            elif numero >= 0:
+                                continue
+                            else:
+                                caracteres_no_deseados.append(columna)
+                        except ValueError:
+                            # Si no es un número válido, añadir a los caracteres no deseados
+                            caracteres_no_deseados.append(columna)
+
+                    # Si se encontraron caracteres no deseados, escribir en el log
+                    if caracteres_no_deseados:
+                        log.write(f"Archivo: {archivo}\n")
+                        log.write(f"Línea {i}\n")  # Número de línea real
+                        log.write(f"Caracteres no deseados: {caracteres_no_deseados}\n\n")
+
+                total_lineas += lineas_archivo  # Contamos las líneas procesadas en este archivo
+
+# Calcular porcentaje de valores faltantes
+if total_valores > 0:
+    porcentaje_faltantes = (total_faltantes / total_valores) * 100
+else:
+    porcentaje_faltantes = 0
+
+# Escribir los resúmenes en el log de validación
+with open(archivo_log, 'a') as log:
+    log.write("\nResumen de Validación:\n")
+    log.write(f"Total de archivos procesados: {total_archivos}\n")
+    log.write(f"Total de líneas procesadas: {total_lineas}\n")
+    log.write(f"Total de valores procesados (excluyendo -999): {total_valores}\n")
+    log.write(f"Total de valores faltantes (-999): {total_faltantes}\n")
+    log.write(f"Porcentaje de valores faltantes sobre el total de valores: {porcentaje_faltantes:.2f}%\n\n")
+
+# Ahora procesamos los resultados como se hizo antes
 
 # Inicializamos el diccionario para almacenar los resultados
 datos_globales = {}
 
-# Procesar los archivos
-for archivo in tqdm(archivos, desc="Procesando archivos", unit="archivo"):
+# Inicializar variables para los días con mayor y menor precipitación
+dia_mas_lluvioso_pasado = {'anio': None, 'dia': None, 'precipitacion': float('-inf')}
+dia_menos_lluvioso_pasado = {'anio': None, 'dia': None, 'precipitacion': float('inf')}
+dia_mas_lluvioso_futuro = {'anio': None, 'dia': None, 'precipitacion': float('-inf')}
+dia_menos_lluvioso_futuro = {'anio': None, 'dia': None, 'precipitacion': float('inf')}
+
+# Procesar los archivos para resultados
+for archivo in tqdm(archivos, desc="Procesando resultados", unit="archivo"):
     with open(archivo, 'r') as f:
         contenido = f.read()
 
@@ -56,122 +193,36 @@ for archivo in tqdm(archivos, desc="Procesando archivos", unit="archivo"):
                     # Actualizar el total y el conteo de días válidos para el año
                     datos_globales[anio]['total'] += sum(d for d in datos_dia if d != -999)
                     datos_globales[anio]['dias'] += sum(1 for d in datos_dia if d != -999)
+
+                    # Buscar el día con la mayor y menor precipitación para los días pasados
+                    if 2006 <= anio <= 2024:
+                        for idx, precipitacion in enumerate(datos_dia):
+                            if precipitacion != -999:
+                                if precipitacion > dia_mas_lluvioso_pasado['precipitacion']:
+                                    dia_mas_lluvioso_pasado = {'anio': anio, 'dia': idx + 1, 'precipitacion': precipitacion}
+                                if precipitacion < dia_menos_lluvioso_pasado['precipitacion']:
+                                    dia_menos_lluvioso_pasado = {'anio': anio, 'dia': idx + 1, 'precipitacion': precipitacion}
+
+                    # Buscar el día con la mayor y menor precipitación para los días futuros
+                    if 2025 <= anio <= 2100:
+                        for idx, precipitacion in enumerate(datos_dia):
+                            if precipitacion != -999:
+                                if precipitacion > dia_mas_lluvioso_futuro['precipitacion']:
+                                    dia_mas_lluvioso_futuro = {'anio': anio, 'dia': idx + 1, 'precipitacion': precipitacion}
+                                if precipitacion < dia_menos_lluvioso_futuro['precipitacion']:
+                                    dia_menos_lluvioso_futuro = {'anio': anio, 'dia': idx + 1, 'precipitacion': precipitacion}
+
                 except ValueError:
-                    continue
+                    continue  # Si ocurre algún error de conversión, se omite la línea
 
-# Separar años pasados (2006-2024) y futuros (2025-2100)
-datos_pasados = {k: v for k, v in datos_globales.items() if 2006 <= k <= 2024}
-datos_futuros = {k: v for k, v in datos_globales.items() if 2025 <= k <= 2100}
+# Guardamos los resultados en el archivo de resultados
+resultado_file = os.path.join(ruta_log, 'resultados.txt')
+with open(resultado_file, 'w') as result_log:
+    result_log.write(f"Día más lluvioso (pasado): Año {dia_mas_lluvioso_pasado['anio']} - Día {dia_mas_lluvioso_pasado['dia']} - Precipitación {dia_mas_lluvioso_pasado['precipitacion']} mm\n")
+    result_log.write(f"Día menos lluvioso (pasado): Año {dia_menos_lluvioso_pasado['anio']} - Día {dia_menos_lluvioso_pasado['dia']} - Precipitación {dia_menos_lluvioso_pasado['precipitacion']} mm\n")
+    result_log.write(f"Día más lluvioso (futuro): Año {dia_mas_lluvioso_futuro['anio']} - Día {dia_mas_lluvioso_futuro['dia']} - Precipitación {dia_mas_lluvioso_futuro['precipitacion']} mm\n")
+    result_log.write(f"Día menos lluvioso (futuro): Año {dia_menos_lluvioso_futuro['anio']} - Día {dia_menos_lluvioso_futuro['dia']} - Precipitación {dia_menos_lluvioso_futuro['precipitacion']} mm\n")
 
-# Identificar los años más lluviosos y los más secos
-lluviosos_pasados = sorted(datos_pasados.items(), key=lambda x: x[1]['total'], reverse=True)[:10]
-secos_pasados = sorted(datos_pasados.items(), key=lambda x: x[1]['total'])[:10]
-lluviosos_futuros = sorted(datos_futuros.items(), key=lambda x: x[1]['total'], reverse=True)[:10]
-secos_futuros = sorted(datos_futuros.items(), key=lambda x: x[1]['total'])[:10]
+    # También se puede agregar el resumen del total de precipitación por año aquí, si lo deseas.
 
-# Calcular promedios de precipitación por período
-promedio_pasados = sum(d['total'] for d in datos_pasados.values()) / len(datos_pasados) if datos_pasados else 0
-promedio_futuros = sum(d['total'] for d in datos_futuros.values()) / len(datos_futuros) if datos_futuros else 0
-
-# Identificar mayor incremento y decremento de precipitación
-mayor_incremento = {'anio': None, 'incremento': float('-inf')}
-mayor_decremento = {'anio': None, 'decremento': float('-inf')}
-
-anio_anterior = None
-total_anterior = None
-
-for anio in sorted(datos_globales):
-    total_actual = datos_globales[anio]['total']
-    if anio_anterior is not None and total_anterior is not None:
-        diferencia = total_actual - total_anterior
-        if diferencia > mayor_incremento['incremento']:
-            mayor_incremento = {'anio': anio, 'incremento': diferencia}
-        if diferencia < mayor_decremento['decremento']:
-            mayor_decremento = {'anio': anio, 'decremento': diferencia}
-    anio_anterior = anio
-    total_anterior = total_actual
-
-# Escribir los resultados globales con formato alineado
-with open(archivo_resultados, 'w') as log:
-    # Tabla de años pasados más lluviosos
-    log.write("Años pasados más lluviosos (2006-2024):\n")
-    log.write(f"{'Año':<6}{'Total Precipitación (L/m²)':<30}\n")
-    log.write("=" * 36 + "\n")
-    for anio, datos in lluviosos_pasados:
-        log.write(f"{anio:<6}{int(datos['total']):<30}\n")
-
-    log.write("\n")  # Separador
-
-    # Tabla de años pasados más secos
-    log.write("Años pasados más secos (2006-2024):\n")
-    log.write(f"{'Año':<6}{'Total Precipitación (L/m²)':<30}\n")
-    log.write("=" * 36 + "\n")
-    for anio, datos in secos_pasados:
-        log.write(f"{anio:<6}{int(datos['total']):<30}\n")
-
-    log.write("\n")  # Separador
-
-    # Tabla de años futuros más lluviosos
-    log.write("Años futuros más lluviosos (2025-2100):\n")
-    log.write(f"{'Año':<6}{'Total Precipitación (L/m²)':<30}\n")
-    log.write("=" * 36 + "\n")
-    for anio, datos in lluviosos_futuros:
-        log.write(f"{anio:<6}{int(datos['total']):<30}\n")
-
-    log.write("\n")  # Separador
-
-    # Tabla de años futuros más secos
-    log.write("Años futuros más secos (2025-2100):\n")
-    log.write(f"{'Año':<6}{'Total Precipitación (L/m²)':<30}\n")
-    log.write("=" * 36 + "\n")
-    for anio, datos in secos_futuros:
-        log.write(f"{anio:<6}{int(datos['total']):<30}\n")
-
-    log.write("\n" + "=" * 91 + "\n\n")  # Separador visual para las secciones
-
-    # Añadir promedios de precipitación
-    log.write("Promedios de Precipitación:\n")
-    log.write(f"Promedio años pasados (2006-2024): {promedio_pasados:.2f} L/m²\n")
-    log.write(f"Promedio años futuros (2025-2100): {promedio_futuros:.2f} L/m²\n")
-
-    log.write("\n")  # Separador
-
-    # Añadir mayor incremento y decremento
-    log.write("Mayor Incremento y Decremento de Precipitación:\n")
-    if mayor_incremento['anio'] is not None:
-        log.write(f"Mayor incremento: Año {mayor_incremento['anio']} con {mayor_incremento['incremento']:.2f} L/m²\n")
-    if mayor_decremento['anio'] is not None:
-        log.write(f"Mayor decremento: Año {mayor_decremento['anio']} con {mayor_decremento['decremento']:.2f} L/m²\n")
-
-    log.write("\n" + "=" * 91 + "\n\n")
-
-    # Encabezado con formato alineado para los resultados globales
-    log.write(f"{'Año':<6}{'Total Precipitación (L/m²)':<30}{'Media Anual (L/m² al Año)':<30}{'Tasa de Variación (%)':<25}\n")
-    log.write("=" * 91 + "\n")
-
-    anio_anterior = None
-    total_anterior = None
-
-    for anio, datos in sorted(datos_globales.items()):
-        total_anual = datos['total']
-        media_anual = (total_anual / datos['dias'] * 365) if datos['dias'] > 0 else 0
-
-        # Calcular la tasa de variación sobre el total anual
-        if anio_anterior is not None and total_anterior > 0:
-            tasa_variacion = ((total_anual - total_anterior) / total_anterior) * 100
-        else:
-            tasa_variacion = None
-
-        # Escribir resultados al log con formato
-        if tasa_variacion is not None:
-            log.write(f"{anio:<6}{int(total_anual):<30}{media_anual:<30.2f}{tasa_variacion:<25.2f}\n")
-        else:
-            log.write(f"{anio:<6}{int(total_anual):<30}{media_anual:<30.2f}{'N/A':<25}\n")
-
-        # Actualizar valores del año anterior
-        anio_anterior = anio
-        total_anterior = total_anual
-
-    log.write("\n")
-
-print(f"Resultados globales guardados en: {archivo_resultados}")
+print("Proceso completo. Validación y resultados guardados.")
