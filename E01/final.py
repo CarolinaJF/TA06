@@ -11,7 +11,7 @@ if not os.path.exists(ruta_log):
     os.makedirs(ruta_log)
 
 # Ruta de la carpeta que contiene los archivos .dat
-carpeta = 'E01/precip.MIROC5.RCP60.2006-2100.SDSM_REJ'
+carpeta = 'E01/ayuda1'
 
 # Patrón para buscar archivos .dat
 patron = '*.dat'
@@ -69,6 +69,28 @@ secos_pasados = sorted(datos_pasados.items(), key=lambda x: x[1]['total'])[:10]
 lluviosos_futuros = sorted(datos_futuros.items(), key=lambda x: x[1]['total'], reverse=True)[:10]
 secos_futuros = sorted(datos_futuros.items(), key=lambda x: x[1]['total'])[:10]
 
+# Calcular promedios de precipitación por período
+promedio_pasados = sum(d['total'] for d in datos_pasados.values()) / len(datos_pasados) if datos_pasados else 0
+promedio_futuros = sum(d['total'] for d in datos_futuros.values()) / len(datos_futuros) if datos_futuros else 0
+
+# Identificar mayor incremento y decremento de precipitación
+mayor_incremento = {'anio': None, 'incremento': float('-inf')}
+mayor_decremento = {'anio': None, 'decremento': float('-inf')}
+
+anio_anterior = None
+total_anterior = None
+
+for anio in sorted(datos_globales):
+    total_actual = datos_globales[anio]['total']
+    if anio_anterior is not None and total_anterior is not None:
+        diferencia = total_actual - total_anterior
+        if diferencia > mayor_incremento['incremento']:
+            mayor_incremento = {'anio': anio, 'incremento': diferencia}
+        if diferencia < mayor_decremento['decremento']:
+            mayor_decremento = {'anio': anio, 'decremento': diferencia}
+    anio_anterior = anio
+    total_anterior = total_actual
+
 # Escribir los resultados globales con formato alineado
 with open(archivo_resultados, 'w') as log:
     # Tabla de años pasados más lluviosos
@@ -106,6 +128,22 @@ with open(archivo_resultados, 'w') as log:
         log.write(f"{anio:<6}{int(datos['total']):<30}\n")
 
     log.write("\n" + "=" * 91 + "\n\n")  # Separador visual para las secciones
+
+    # Añadir promedios de precipitación
+    log.write("Promedios de Precipitación:\n")
+    log.write(f"Promedio años pasados (2006-2024): {promedio_pasados:.2f} L/m²\n")
+    log.write(f"Promedio años futuros (2025-2100): {promedio_futuros:.2f} L/m²\n")
+
+    log.write("\n")  # Separador
+
+    # Añadir mayor incremento y decremento
+    log.write("Mayor Incremento y Decremento de Precipitación:\n")
+    if mayor_incremento['anio'] is not None:
+        log.write(f"Mayor incremento: Año {mayor_incremento['anio']} con {mayor_incremento['incremento']:.2f} L/m²\n")
+    if mayor_decremento['anio'] is not None:
+        log.write(f"Mayor decremento: Año {mayor_decremento['anio']} con {mayor_decremento['decremento']:.2f} L/m²\n")
+
+    log.write("\n" + "=" * 91 + "\n\n")
 
     # Encabezado con formato alineado para los resultados globales
     log.write(f"{'Año':<6}{'Total Precipitación (L/m²)':<30}{'Media Anual (L/m² al Año)':<30}{'Tasa de Variación (%)':<25}\n")
