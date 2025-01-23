@@ -175,19 +175,15 @@ else:
     porcentaje_faltantes = 0
 
 # Escribir los resúmenes en el log de resultados
-resultado_file = os.path.join(ruta_log, 'resultados.txt')
-with open(resultado_file, 'w') as result_log:
-    result_log.write(f"Día más lluvioso (pasado): Año {dia_mas_lluvioso_pasado['anio']} - Día {dia_mas_lluvioso_pasado['dia']} - Precipitación {dia_mas_lluvioso_pasado['precipitacion']} mm\n")
-    result_log.write(f"Día menos lluvioso (pasado): Año {dia_menos_lluvioso_pasado['anio']} - Día {dia_menos_lluvioso_pasado['dia']} - Precipitación {dia_menos_lluvioso_pasado['precipitacion']} mm\n")
-    result_log.write(f"Día más lluvioso (futuro): Año {dia_mas_lluvioso_futuro['anio']} - Día {dia_mas_lluvioso_futuro['dia']} - Precipitación {dia_mas_lluvioso_futuro['precipitacion']} mm\n")
-    result_log.write(f"Día menos lluvioso (futuro): Año {dia_menos_lluvioso_futuro['anio']} - Día {dia_menos_lluvioso_futuro['dia']} - Precipitación {dia_menos_lluvioso_futuro['precipitacion']} mm\n")
-
-    # Resumen general
-    result_log.write("\nResumen Final:\n")
-    result_log.write(f"Total de archivos procesados: {total_archivos}\n")
-    result_log.write(f"Total de líneas procesadas: {total_lineas}\n")
-    result_log.write(f"Total de valores procesados (excluyendo -999): {total_valores}\n")
-    result_log.write(f"Total de valores faltantes (-999): {total_faltantes}\n")
-    result_log.write(f"Porcentaje de valores faltantes sobre el total de valores: {porcentaje_faltantes:.2f}%\n\n")
-
-print("Proceso completo. Validación y resultados guardados.")
+resultado_file = os.path.join(ruta_log, 'resultados.log')
+with open(resultado_file, 'a') as resultado_log:
+    resultado_log.write(f"Total de archivos procesados: {total_archivos}\n")
+    resultado_log.write(f"Total de líneas procesadas: {total_lineas}\n")
+    resultado_log.write(f"Total de valores procesados: {total_valores}\n")
+    resultado_log.write(f"Total de valores faltantes (-999): {total_faltantes}\n")
+    resultado_log.write(f"Porcentaje de valores faltantes: {porcentaje_faltantes:.2f}%\n\n")
+    resultado_log.write(f"Día más lluvioso pasado: {dia_mas_lluvioso_pasado}\n")
+    resultado_log.write(f"Día menos lluvioso pasado: {dia_menos_lluvioso_pasado}\n")
+    resultado_log.write(f"Día más lluvioso futuro: {dia_mas_lluvioso_futuro}\n")
+    resultado_log.write(f"Día menos lluvioso futuro: {dia_menos_lluvioso_futuro}\n")
+    resultado_log.write("="*50 + "\n")
