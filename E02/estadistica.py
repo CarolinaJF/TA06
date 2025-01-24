@@ -12,7 +12,7 @@ if not os.path.exists(ruta_log):
     os.makedirs(ruta_log)
 
 # Ruta de la carpeta que contiene los archivos .dat
-carpeta = 'E01/ayuda1'
+carpeta = 'E01/precip.MIROC5.RCP60.2006-2100.SDSM_REJ'
 
 # Patrón para buscar archivos .dat
 patron = '*.dat'
