@@ -5,7 +5,7 @@ from tqdm import tqdm  # Importamos tqdm para la barra de progreso
 
 # Ruta personalizada para los archivos de log (puedes cambiar esta ruta)
 ruta_log = 'E02' # Cambia esto por la ruta deseada, por ejemplo: 'C:/mis_logs' o '/home/usuario/logs'
-archivo_resultados = 'pruebas.log'
+archivo_resultados = 'E02/pruebas.log'
 
 # Verificar si la ruta existe, si no, crearla
 if not os.path.exists(ruta_log):
@@ -115,7 +115,7 @@ for anio in sorted(datos_globales):
     total_anterior = total_actual
 
 # Escribir los resultados globales con formato alineado
-with open(archivo_resultados, 'a') as log:
+with open(archivo_resultados, 'w') as log:
     # Tabla de años pasados más lluviosos
     log.write("Años pasados más lluviosos (2006-2024):\n")
     log.write(f"{'Año':<6}{'Total Precipitación (L/m²)':<30}\n")
