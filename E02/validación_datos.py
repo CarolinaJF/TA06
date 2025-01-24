@@ -5,6 +5,7 @@ import re  # Para usar expresiones regulares
 
 # Ruta personalizada para los archivos de log (puedes cambiar esta ruta)
 ruta_log = 'E02'  # Cambia esto por la ruta deseada, por ejemplo: 'C:/mis_logs' o '/home/usuario/logs'
+archivo_resultados = 'E02/pruebas.log'
 
 # Verificar si la ruta existe, si no, crearla
 if not os.path.exists(ruta_log):
