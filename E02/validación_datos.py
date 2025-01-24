@@ -1,7 +1,7 @@
 import glob
 import os
 import re  # Para usar expresiones regulares
-from tqdm import tqdm  # Importamos tqdm para la barra de progreso
+
 
 # Ruta personalizada para los archivos de log (puedes cambiar esta ruta)
 ruta_log = 'E02'  # Cambia esto por la ruta deseada, por ejemplo: 'C:/mis_logs' o '/home/usuario/logs'
