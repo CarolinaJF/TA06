@@ -8,7 +8,7 @@ It is for this reason that we set ourselves the challenge of processing the data
 
 ## 📑 **Índice**
 
-1. [🌐 E01 - Validación de datos](./E01/E01.md)  
+1. [🌐 Validación de datos](./E01/E01.md)  
 2. [📊 Análisis de Datos y Estadísticas](./E02/E02.md)
 3. [🛠️ Under construction](./E03/E03.md)
 4. [🛠️ Under construction](./E04/E04.md)
