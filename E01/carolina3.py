@@ -19,9 +19,6 @@ patron = '*.dat'
 
 # Obtener la lista de archivos .dat en la carpeta
 archivos = glob.glob(os.path.join(carpeta, patron))
-"""
-# Crear un archivo de log para guardar los resultados (modo 'a' para no sobrescribir)
-archivo_resultados = os.path.join(ruta_log, 'resultados_globales.log')"""
 
 # Inicializamos el diccionario para almacenar los resultados
 datos_globales = {}
