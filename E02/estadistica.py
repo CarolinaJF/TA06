@@ -115,7 +115,7 @@ for anio in sorted(datos_globales):
     total_anterior = total_actual
 
 # Escribir los resultados globales con formato alineado
-with open(archivo_resultados, 'w') as log:
+with open(archivo_resultados, 'a') as log:
     # Tabla de años pasados más lluviosos
     log.write("Años pasados más lluviosos (2006-2024):\n")
     log.write(f"{'Año':<6}{'Total Precipitación (L/m²)':<30}\n")
