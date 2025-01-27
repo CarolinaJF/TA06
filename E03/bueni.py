@@ -370,3 +370,94 @@ with open(archivo_resultados, 'a') as log:
 print(f"Resultados globales guardados en: {archivo_resultados}")
 time.sleep(5)
 os.system('clear')
+
+import csv
+
+# Supongamos que 'datos_globales' contiene todos los datos ya procesados
+archivo_csv = 'E04/dades/resultados_generales.csv'
+
+# Calculamos el total de precipitación de todos los años para obtener el promedio
+total_precip = sum(datos['total'] for datos in datos_globales.values())
+num_anos = len(datos_globales)
+promedio_precip = total_precip / num_anos if num_anos > 0 else 0
+
+# Variables para identificar los años más y menos pluviosos
+max_precipitacion = -float('inf')
+min_precipitacion = float('inf')
+anio_max = None
+anio_min = None
+
+# Abre el archivo CSV en modo escritura
+with open(archivo_csv, 'w', newline='') as csvfile:
+    fieldnames = ['Año', 'Total Precipitación (L/m²)', 'Media Anual (L/m² al Año)', 'Tasa de Variación (%)', 'Clasificación']
+    
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    
+    # Escribe el encabezado en el archivo CSV
+    writer.writeheader()
+    
+    anio_anterior = None
+    total_anterior = None
+
+    for anio, datos in sorted(datos_globales.items()):
+        total_anual = datos['total']
+        media_anual = (total_anual / datos['dias'] * 365) if datos['dias'] > 0 else 0
+
+        # Calcular la tasa de variación sobre el total anual
+        if anio_anterior is not None and total_anterior > 0:
+            tasa_variacion = ((total_anual - total_anterior) / total_anterior) * 100
+        else:
+            tasa_variacion = None
+        
+        # Clasificar el año según su precipitación
+        if total_anual > promedio_precip:
+            clasificacion = "Pluvioso"
+        elif total_anual < promedio_precip:
+            clasificacion = "Seco"
+        else:
+            clasificacion = "Normal"
+        
+        # Actualizar los años más y menos pluviosos
+        if total_anual > max_precipitacion:
+            max_precipitacion = total_anual
+            anio_max = anio
+        
+        if total_anual < min_precipitacion:
+            min_precipitacion = total_anual
+            anio_min = anio
+
+        # Crear un diccionario con los resultados
+        if tasa_variacion is not None:
+            row = {
+                'Año': anio,
+                'Total Precipitación (L/m²)': int(total_anual),
+                'Media Anual (L/m² al Año)': round(media_anual, 2),
+                'Tasa de Variación (%)': round(tasa_variacion, 2),
+                'Clasificación': clasificacion
+            }
+        else:
+            row = {
+                'Año': anio,
+                'Total Precipitación (L/m²)': int(total_anual),
+                'Media Anual (L/m² al Año)': round(media_anual, 2),
+                'Tasa de Variación (%)': 'N/A',
+                'Clasificación': clasificacion
+            }
+
+        # Escribir la fila en el archivo CSV
+        writer.writerow(row)
+
+        # Actualizar valores del año anterior
+        anio_anterior = anio
+        total_anterior = total_anual
+
+# Añadir los años más y menos pluviosos al final del archivo CSV
+with open(archivo_csv, 'a', newline='') as csvfile:
+    writer = csv.writer(csvfile)
+    
+    # Escribir una fila adicional con los resultados de los años más y menos pluviosos
+    writer.writerow([])
+    writer.writerow(["Año Más Lluvioso", anio_max, "Total Precipitación (L/m²)", max_precipitacion])
+    writer.writerow(["Año Menos Lluvioso", anio_min, "Total Precipitación (L/m²)", min_precipitacion])
+
+print(f"Resultados globales exportados a: {archivo_csv}")
