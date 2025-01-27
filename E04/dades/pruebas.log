@@ -1,0 +1,9 @@
+Resumen:
+Total archivos procesados: 16064
+Total líneas procesadas: 18312960
+Día más lluvioso pasado: {'anio': 2013, 'dia': 19, 'precipitacion': 807.0}
+Día menos lluvioso pasado: {'anio': 2006, 'dia': 1, 'precipitacion': 0.0}
+Día más lluvioso futuro: {'anio': 2073, 'dia': 31, 'precipitacion': 1343.0}
+Día menos lluvioso futuro: {'anio': 2025, 'dia': 1, 'precipitacion': 0.0}
+Promedio precipitación años pasados: 64289775.58
+Promedio precipitación años futuros: 59612778.95
