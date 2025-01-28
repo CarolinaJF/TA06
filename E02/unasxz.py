@@ -1,5 +1,6 @@
 import glob
 import os
+import datetime
 import re  # Para usar expresiones regulares
 from tqdm import tqdm  # Importamos tqdm para la barra de progreso
 
@@ -78,8 +79,18 @@ for archivo in tqdm(archivos, desc="Procesando archivos", unit="archivo"):
                     continue
 
 # Separar años pasados (2006-2024) y futuros (2025-2100)
-datos_pasados = {k: v for k, v in datos_globales.items() if 2006 <= k <= 2024}
-datos_futuros = {k: v for k, v in datos_globales.items() if 2025 <= k <= 2100}
+current_year = datetime.datetime.now().year
+
+carpeta = 'E01/precip.MIROC5.RCP60.2006-2100.SDSM_REJ'
+
+# Patrón para buscar archivos .dat
+patron = '*.dat'
+
+# Obtener la lista de archivos .dat en la carpeta
+archivos = glob.glob(os.path.join(carpeta, patron))
+
+datos_pasados = {k: v for k, v in datos_globales.items() if 2006 <= k < current_year}
+datos_futuros = {k: v for k, v in datos_globales.items() if current_year <= k <= 2100}
 
 # Identificar los años más lluviosos y los más secos
 lluviosos_pasados = sorted(datos_pasados.items(), key=lambda x: x[1]['total'], reverse=True)[:10]
