@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Mostrar CSV</title>
+   <style>
+       /* General body styles */
+       body {
+           font-family: Arial, sans-serif;
+           background-color: #f4f4f9;
+           margin: 0;
+           padding: 0;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           height: 100vh;
+       }
+
+       /* Container for the content */
+       h1 {
+           text-align: center;
+           color: #333;
+       }
+
+       /* Table styles */
+       table {
+           width: 80%;
+           border-collapse: collapse;
+           margin-top: 20px;
+           background-color: white;
+           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+           border-radius: 8px;
+       }
+
+       /* Table header styles */
+       th {
+           background-color: #4CAF50;
+           color: white;
+           padding: 10px;
+           text-align: left;
+           font-size: 16px;
+       }
+
+       /* Table data cell styles */
+       td {
+           padding: 8px 15px;
+           text-align: left;
+           font-size: 14px;
+           border-bottom: 1px solid #ddd;
+       }
+
+       /* Hover effect on rows */
+       tr:hover {
+           background-color: #f1f1f1;
+       }
+
+       /* Alternate row colors */
+       tr:nth-child(even) {
+           background-color: #f9f9f9;
+       }
+
+       /* Footer for additional spacing */
+       footer {
+           text-align: center;
+           margin-top: 40px;
+           color: #888;
+       }
+   </style>
+</head>
+<body>
+   <div>
+       <h1>Datos del archivo CSV</h1>
+       <table id="tablaDatos">
+           <thead>
+               <tr>
+                   <th>Columna 1</th>
+                   <th>Columna 2</th>
+                   <th>Columna 3</th>
+                   <th>Columna 4</th>
+                   <th>Columna 5</th>
+               </tr>
+           </thead>
+           <tbody>
+           </tbody>
+       </table>
+   </div>
+
+   <script>
+       document.addEventListener("DOMContentLoaded", function() {
+           const tableBody = document.querySelector("#tablaDatos tbody");
+
+           // Ruta al archivo CSV
+           const filePath = 'dades/resultados_generales.csv';
+
+           // Función para leer el archivo CSV
+           fetch(filePath)
+               .then(response => response.text())
+               .then(data => {
+                   const rows = data.split('\n');
+
+                   // Iterar sobre cada fila del archivo CSV
+                   rows.forEach(row => {
+                       const cols = row.split(',');
+
+                       if (cols.length > 1) {
+                           const tr = document.createElement('tr');
+                          
+                           cols.forEach(col => {
+                               const td = document.createElement('td');
+                               td.textContent = col.trim();
+                               tr.appendChild(td);
+                           });
+
+                           tableBody.appendChild(tr);
+                       }
+                   });
+               })
+               .catch(error => {
+                   console.error('Error al leer el archivo CSV:', error);
+               });
+       });
+   </script>
+</body>
+</html>
