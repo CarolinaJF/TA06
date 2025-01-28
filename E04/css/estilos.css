@@ -1,0 +1,91 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Fondo negro */
+    color: #f1f1f1; /* Texto en color blanco/gris claro */
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #ffd700; /* Dorado para los títulos */
+    margin-top: 20px;
+}
+
+h2 {
+    margin-top: 30px;
+    font-size: 1.8rem;
+}
+
+/* Tablas generales */
+table {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(255, 215, 0, 0.4); /* Sombra dorada */
+    background-color: #222; /* Fondo oscuro para las tablas */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table thead tr {
+    background-color: #ffd700; /* Fondo dorado para el encabezado */
+    color: #000; /* Texto negro para contraste */
+    text-align: left;
+    font-weight: bold;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    border: 1px solid #ffd700; /* Bordes dorados */
+    color: #f1f1f1; /* Texto claro */
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #333; /* Fila oscura */
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #444; /* Fila más clara */
+}
+
+table tbody tr:hover {
+    background-color: #555; /* Fondo más claro al pasar el cursor */
+    cursor: pointer;
+    color: #ffd700; /* Texto dorado al pasar el cursor */
+}
+
+/* Tabla principal */
+#tablaPrincipal {
+    border: 2px solid #ffd700; /* Borde dorado */
+}
+
+#tablaPrincipal tbody tr:hover {
+    background-color: #666; /* Fondo más claro al pasar el cursor */
+    color: #ffd700; /* Texto dorado */
+}
+
+/* Tabla de últimas filas */
+#tablaUltimasFilas {
+    border: 2px solid #ffa500; /* Naranja dorado */
+}
+
+#tablaUltimasFilas tbody tr:hover {
+    background-color: #777; /* Fondo más claro al pasar el cursor */
+    color: #ffa500; /* Texto naranja dorado */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    table th,
+    table td {
+        padding: 8px 10px;
+    }
+
+    h1, h2 {
+        font-size: 1.5rem;
+    }
+}
