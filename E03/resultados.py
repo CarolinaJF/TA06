@@ -7,14 +7,14 @@ import datetime
 
 # Ruta personalizada para los archivos de log (puedes cambiar esta ruta)
 ruta_log = 'E04/dades'  # Cambia esto por la ruta deseada, por ejemplo: 'C:/mis_logs' o '/home/usuario/logs'
-archivo_resultados = 'E04/dades/pruebas.log'
+archivo_resultados = 'E04/dades/datos.log'
 
 # Verificar si la ruta existe, si no, crearla
 if not os.path.exists(ruta_log):
     os.makedirs(ruta_log)
 
 # Ruta de la carpeta que contiene los archivos .dat
-carpeta = 'E01/ayuda1'
+carpeta = 'E01/precip.MIROC5.RCP60.2006-2100.SDSM_REJ'
 
 # Patrón para buscar archivos .dat
 patron = '*.dat'
@@ -23,7 +23,7 @@ patron = '*.dat'
 archivos = glob.glob(os.path.join(carpeta, patron))
 
 # Crear un archivo de log para guardar los errores (modo 'a' para no sobrescribir)
-archivo_log = os.path.join(ruta_log, 'pruebas.log')
+archivo_log = os.path.join(ruta_log, 'datos.log')
 
 
 # Inicializamos contadores globales
@@ -148,7 +148,7 @@ else:
 
 # Escribir los resúmenes en el log de resultados
 with open(archivo_log, 'a') as log:
-    log.write(f"Fecha: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+    log.write(f"Fecha de entrada: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
     log.write("Resumen Final:\n")
     log.write(f"Total de archivos procesados: {total_archivos}\n")
     log.write(f"Total de líneas procesadas: {total_lineas}\n")
