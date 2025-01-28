@@ -3,6 +3,7 @@ import os
 import re  # Para usar expresiones regulares
 from tqdm import tqdm  # Importamos tqdm para la barra de progreso
 import time   
+import datetime
 
 # Ruta personalizada para los archivos de log (puedes cambiar esta ruta)
 ruta_log = 'E04/dades'  # Cambia esto por la ruta deseada, por ejemplo: 'C:/mis_logs' o '/home/usuario/logs'
@@ -147,6 +148,7 @@ else:
 
 # Escribir los resúmenes en el log de resultados
 with open(archivo_log, 'a') as log:
+    log.write(f"Fecha: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
     log.write("Resumen Final:\n")
     log.write(f"Total de archivos procesados: {total_archivos}\n")
     log.write(f"Total de líneas procesadas: {total_lineas}\n")
@@ -476,13 +478,22 @@ print(f"Resultados globales exportados a: {archivo_csv}")
 
 # Mostrar estadísticas visuales
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+import warnings
+import datetime
+
+# Suprimir advertencias de FutureWarning (opcional, si necesitas mantener limpio el entorno)
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 # Gráfico de barras: Precipitación total por año
 plt.figure(figsize=(10,6))
-sns.barplot(x=anos, y=total_precipitaciones, palette="viridis")
+sns.barplot(x=anos, y=total_precipitaciones, hue=anos, palette="viridis", dodge=False)  # Usamos `hue=anos` y `dodge=False` para mantener el formato esperado
 plt.title("Precipitación Total por Año")
 plt.xlabel("Año")
 plt.ylabel("Precipitación Total (L/m²)")
 plt.xticks(rotation=45)
+plt.legend([], [], frameon=False)  # Eliminamos la leyenda si no es necesaria
 plt.tight_layout()
 plt.show()
 
