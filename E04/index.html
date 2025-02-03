@@ -5,12 +5,13 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Datos</title>
    <link rel="stylesheet" href="css/estilos.css">
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Incluimos Chart.js -->
 </head>
 <body>
-   <h1>Estadisticas</h1>
+   <h1>Estadísticas</h1>
 
    <!-- Tabla principal -->
-   <h2></h2>
+   <h2>Datos Principales</h2>
    <table id="tablaPrincipal">
        <thead>
            <tr id="encabezadoPrincipal"></tr>
@@ -20,12 +21,16 @@
    </table>
 
    <!-- Tabla de las últimas dos filas (sin encabezados) -->
-   <h2></h2>
+   <h2>Últimas Filas</h2>
    <table id="tablaUltimasFilas">
        <tbody>
        </tbody>
    </table>
-  
+
+   <!-- Gráfico de estadísticas -->
+   <h2>Gráfico de Estadísticas</h2>
+   <canvas id="graficoEstadisticas" width="400" height="200"></canvas> <!-- Canvas para el gráfico -->
+
    <script>
        document.addEventListener("DOMContentLoaded", function() {
            const tablaPrincipalHead = document.querySelector("#tablaPrincipal thead tr");
@@ -78,6 +83,40 @@
 
                    // Agregar las últimas dos filas a la tabla correspondiente
                    addRowsToTable(lastTwoRows, tablaUltimasFilasBody);
+
+                   // Crear el gráfico de estadísticas
+                   const etiquetas = [];  // Para almacenar las etiquetas (por ejemplo, fechas, nombres, etc.)
+                   const valores = [];    // Para almacenar los valores numéricos (por ejemplo, resultados)
+
+                   // Extraer las etiquetas y los valores de las filas principales
+                   mainRows.forEach(row => {
+                       const cols = row.split(',');
+                       etiquetas.push(cols[0].trim()); // La primera columna es para las etiquetas
+                       valores.push(parseFloat(cols[1].trim())); // La segunda columna es para los valores numéricos
+                   });
+
+                   // Crear el gráfico
+                   const ctx = document.getElementById('graficoEstadisticas').getContext('2d');
+                   new Chart(ctx, {
+                       type: 'bar',  // Tipo de gráfico: barras
+                       data: {
+                           labels: etiquetas,  // Etiquetas del eje X
+                           datasets: [{
+                               label: 'Estadísticas',  // Nombre del dataset
+                               data: valores,  // Datos del eje Y
+                               backgroundColor: 'rgba(54, 162, 235, 0.2)', // Color de las barras
+                               borderColor: 'rgba(54, 162, 235, 1)',  // Color del borde de las barras
+                               borderWidth: 1
+                           }]
+                       },
+                       options: {
+                           scales: {
+                               y: {
+                                   beginAtZero: true // Asegura que el eje Y empiece desde 0
+                               }
+                           }
+                       }
+                   });
                })
                .catch(error => {
                    console.error('Error al leer el archivo CSV:', error);
