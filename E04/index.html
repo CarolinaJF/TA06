@@ -21,7 +21,7 @@
    </table>
 
    <!-- Tabla de las últimas dos filas (sin encabezados) -->
-   <h2>Últimas Filas</h2>
+   <h2></h2>
    <table id="tablaUltimasFilas">
        <tbody>
        </tbody>
@@ -112,7 +112,42 @@
                        options: {
                            scales: {
                                y: {
-                                   beginAtZero: true // Asegura que el eje Y empiece desde 0
+                                   beginAtZero: true,  // Asegura que el eje Y empiece desde 0
+                                   ticks: {
+                                       font: {
+                                           size: 14,  // Aumentar tamaño de las etiquetas en el eje Y
+                                           weight: 'bold',
+                                           family: 'Arial',
+                                           color: '#ffffff'  // Cambiar color de las etiquetas del eje Y
+                                       }
+                                   }
+                               },
+                               x: {
+                                   ticks: {
+                                       font: {
+                                           size: 14,  // Aumentar tamaño de las etiquetas en el eje X
+                                           weight: 'bold',
+                                           family: 'Arial',
+                                           color: '#ffffff'  // Cambiar color de las etiquetas del eje X
+                                       }
+                                   }
+                               }
+                           },
+                           plugins: {
+                               legend: {
+                                   labels: {
+                                       font: {
+                                           size: 16,  // Aumentar tamaño de la leyenda
+                                           weight: 'bold',
+                                           family: 'Arial',
+                                           color: '#ffffff'  // Cambiar color de la leyenda
+                                       }
+                                   }
+                               }
+                           },
+                           elements: {
+                               bar: {
+                                   borderRadius: 5  // Bordes redondeados en las barras
                                }
                            }
                        }
