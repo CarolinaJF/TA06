@@ -471,8 +471,8 @@ with open(archivo_csv, 'a', newline='') as csvfile:
     
     # Escribir una fila adicional con los resultados de los años más y menos pluviosos
     writer.writerow([])
-    writer.writerow(["Año Más Pluvioso", anio_max, "Total Precipitación (L/m²)", max_precipitacion])
-    writer.writerow(["Año Menos Pluvioso", anio_min, "Total Precipitación (L/m²)", min_precipitacion])
+    writer.writerow(["Año Más Lluvioso", anio_max, "Total Precipitación (L/m²)", max_precipitacion])
+    writer.writerow(["Año Menos Lluvioso", anio_min, "Total Precipitación (L/m²)", min_precipitacion])
 
 print(f"Resultados globales exportados a: {archivo_csv}")
 
