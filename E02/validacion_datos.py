@@ -30,7 +30,7 @@ archivos = glob.glob(os.path.join(carpeta, patron))
 
 # Validar si hay archivos .dat en la carpeta
 if not archivos:
-    with open(archivo_log, 'a') as log:
+    with open(archivo_log, 'a', encoding='utf-8') as log:
         log.write(f"ERROR: No se encontraron archivos .dat en la carpeta {carpeta}.\n")
     exit()  # Detener el script si no hay archivos .dat
 
@@ -51,7 +51,7 @@ anio_minimo = 2006
 anio_maximo = 2100
 
 # Inicializamos la barra de progreso con tqdm
-with open(archivo_log, 'a') as log:
+with open(archivo_log, 'a', encoding='utf-8') as log:
     # Usamos tqdm para la barra de progreso en los archivos
     for archivo in tqdm(archivos, desc="Procesando archivos", unit="archivo"):
         with open(archivo, 'r') as f:
@@ -175,7 +175,7 @@ else:
     porcentaje_faltantes = 0
 
 # Escribir los resúmenes en el log de resultados
-with open(archivo_log, 'a') as log:
+with open(archivo_log, 'a', encoding='utf-8') as log:
     log.write("Resumen Final:\n")
     log.write(f"Total de archivos procesados: {total_archivos}\n")
     log.write(f"Total de líneas procesadas: {total_lineas}\n")

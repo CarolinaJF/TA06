@@ -1,0 +1,11 @@
+ERROR: El ID del pluviómetro no coincide en el archivo E01/ayuda1\precip.P1.MIROC5.RCP60.2006-2100.REGRESION.dat, línea 3, valor esperado: P1, encontrado: Ps1
+
+ERROR: El año 2006 en el archivo E01/ayuda1\precip.P1.MIROC5.RCP60.2006-2100.REGRESION.dat no tiene 12 meses, tiene 11 meses
+
+Resumen Final:
+Total de archivos procesados: 4
+Total de líneas procesadas: 4560
+Total de valores procesados (excluyendo -999): 150480
+Total de valores faltantes (-999): 2660
+Porcentaje de valores faltantes sobre el total de valores: 1.77%
+
