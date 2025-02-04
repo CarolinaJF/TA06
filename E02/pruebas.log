@@ -172,3 +172,17 @@ Año   Total Precipitación (L/m²)    Media Anual (L/m² al Año)     Tasa de V
 2099  62184030                      3871.02                       34.73                    
 2100  60598786                      3772.33                       -2.55                    
 
+Resumen Final:
+Total de archivos procesados: 4
+Total de líneas procesadas: 4560
+Total de valores procesados (excluyendo -999): 150480
+Total de valores faltantes (-999): 2660
+Porcentaje de valores faltantes sobre el total de valores: 1.77%
+
+Resumen Final:
+Total de archivos procesados: 4
+Total de líneas procesadas: 4560
+Total de valores procesados (excluyendo -999): 150480
+Total de valores faltantes (-999): 2660
+Porcentaje de valores faltantes sobre el total de valores: 1.77%
+
