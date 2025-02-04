@@ -1,4 +1,4 @@
-AÃ±o,Total PrecipitaciÃ³n (L/mÂ²),Media Anual (L/mÂ² al AÃ±o),Tasa de VariaciÃ³n (%),ClasificaciÃ³n
+Año,Total Precipitación (L/m²),Media Anual (L/m² al Año),Tasa de Variación (%),Clasificación
 2006,81652279,5082.94,N/A,Pluvioso
 2007,62275361,3876.7,-23.73,Pluvioso
 2008,60853163,3788.17,-2.28,Pluvioso
@@ -95,5 +95,5 @@ AÃ±o,Total PrecipitaciÃ³n (L/mÂ²),Media Anual (L/mÂ² al AÃ±o),Tasa de VariaciÃ³n
 2099,62184030,3871.02,34.73,Pluvioso
 2100,60598786,3772.33,-2.55,Pluvioso
 
-AÃ±o MÃ¡s Pluvioso,2022,Total PrecipitaciÃ³n (L/mÂ²),85467456.0
-AÃ±o Menos Pluvioso,2079,Total PrecipitaciÃ³n (L/mÂ²),36625056.0
+Año Más Lluvioso,2022,Total Precipitación (L/m²),85467456.0
+Año Menos Lluvioso,2079,Total Precipitación (L/m²),36625056.0
