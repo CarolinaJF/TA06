@@ -13,15 +13,26 @@ if not os.path.exists(ruta_log):
 # Ruta de la carpeta que contiene los archivos .dat
 carpeta = 'E01/precip.MIROC5.RCP60.2006-2100.SDSM_REJ'
 
+# Crear un archivo de log para guardar los errores (modo 'a' para no sobrescribir)
+archivo_log = os.path.join(ruta_log, 'pruebas.log')
+
+# Validar si la carpeta existe
+if not os.path.exists(carpeta):
+    with open(archivo_log, 'a', encoding='utf-8') as log:
+        log.write(f"ERROR: La carpeta {carpeta} no existe. Verifica la ruta.\n")
+    exit()  # Detener el script si la carpeta no existe
+
 # Patrón para buscar archivos .dat
 patron = '*.dat'
 
 # Obtener la lista de archivos .dat en la carpeta
 archivos = glob.glob(os.path.join(carpeta, patron))
 
-# Crear un archivo de log para guardar los errores (modo 'a' para no sobrescribir)
-archivo_log = os.path.join(ruta_log, 'pruebas.log')
-
+# Validar si hay archivos .dat en la carpeta
+if not archivos:
+    with open(archivo_log, 'a') as log:
+        log.write(f"ERROR: No se encontraron archivos .dat en la carpeta {carpeta}.\n")
+    exit()  # Detener el script si no hay archivos .dat
 
 # Inicializamos contadores globales
 total_valores = 0
@@ -34,6 +45,10 @@ parametros_primera_fila = ['precip', 'MIROC5', 'RCP60', 'REGRESION', 'decimas', 
 
 # Parámetros esperados para la segunda fila (columnas fijas)
 parametros_segunda_fila_fija = ['182', 'geo', '2006', '2100', '-1']
+
+# Rango válido de años
+anio_minimo = 2006
+anio_maximo = 2100
 
 # Inicializamos la barra de progreso con tqdm
 with open(archivo_log, 'a') as log:
@@ -84,6 +99,9 @@ with open(archivo_log, 'a') as log:
                 # Obtener el ID del pluviómetro desde la primera columna de la segunda línea
                 id_pluviometro = segunda_linea[0]  # La primera columna en la segunda línea
 
+                # Diccionario para contar los meses por año
+                meses_por_anio = {}
+
                 # Procesar las líneas desde la tercera
                 for i, linea in enumerate(lines[2:], start=3):  # Empezamos desde la tercera línea
                     lineas_archivo += 1
@@ -106,7 +124,15 @@ with open(archivo_log, 'a') as log:
                     if len(columnas) > 1:
                         anio = columnas[1]
                         if re.match(r'^\d{4}$', anio):  # Verificar que sea un año válido
-                            pass  # Comentado ya que no se necesita el manejo del año ahora
+                            anio = int(anio)  # Convertir a entero para comparar
+                            # Verificar si el año está fuera del rango 2006-2100
+                            if anio < anio_minimo or anio > anio_maximo:
+                                log.write(f"ERROR: El año {anio} en el archivo {archivo}, línea {i} está fuera del rango válido (2006-2100)\n\n")
+                            else:
+                                # Solo contar los meses si el año está dentro del rango válido
+                                if anio not in meses_por_anio:
+                                    meses_por_anio[anio] = 0
+                                meses_por_anio[anio] += 1
 
                     # Excluir la primera columna para las demás verificaciones
                     columnas = columnas[1:]
@@ -135,6 +161,11 @@ with open(archivo_log, 'a') as log:
                         log.write(f"Línea {i}\n")  # Número de línea real
                         log.write(f"Caracteres no deseados: {caracteres_no_deseados}\n\n")
 
+                # Verificar que cada año tenga exactamente 12 meses (solo para años dentro del rango válido)
+                for anio, meses in meses_por_anio.items():
+                    if anio_minimo <= anio <= anio_maximo and meses != 12:
+                        log.write(f"ERROR: El año {anio} en el archivo {archivo} no tiene 12 meses, tiene {meses} meses\n\n")
+
                 total_lineas += lineas_archivo  # Contamos las líneas procesadas en este archivo
 
 # Calcular porcentaje de valores faltantes
@@ -151,4 +182,3 @@ with open(archivo_log, 'a') as log:
     log.write(f"Total de valores procesados (excluyendo -999): {total_valores}\n")
     log.write(f"Total de valores faltantes (-999): {total_faltantes}\n")
     log.write(f"Porcentaje de valores faltantes sobre el total de valores: {porcentaje_faltantes:.2f}%\n\n")
-
