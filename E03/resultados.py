@@ -3,17 +3,18 @@ import os
 import re  # Para usar expresiones regulares
 from tqdm import tqdm  # Importamos tqdm para la barra de progreso
 import time   
+import datetime
 
 # Ruta personalizada para los archivos de log (puedes cambiar esta ruta)
 ruta_log = 'E04/dades'  # Cambia esto por la ruta deseada, por ejemplo: 'C:/mis_logs' o '/home/usuario/logs'
-archivo_resultados = 'E04/dades/pruebas.log'
+archivo_resultados = 'E04/dades/datos.log'
 
 # Verificar si la ruta existe, si no, crearla
 if not os.path.exists(ruta_log):
     os.makedirs(ruta_log)
 
 # Ruta de la carpeta que contiene los archivos .dat
-carpeta = 'E01/ayuda1'
+carpeta = 'E01/precip.MIROC5.RCP60.2006-2100.SDSM_REJ'
 
 # Patrón para buscar archivos .dat
 patron = '*.dat'
@@ -22,7 +23,7 @@ patron = '*.dat'
 archivos = glob.glob(os.path.join(carpeta, patron))
 
 # Crear un archivo de log para guardar los errores (modo 'a' para no sobrescribir)
-archivo_log = os.path.join(ruta_log, 'pruebas.log')
+archivo_log = os.path.join(ruta_log, 'datos.log')
 
 
 # Inicializamos contadores globales
@@ -147,6 +148,7 @@ else:
 
 # Escribir los resúmenes en el log de resultados
 with open(archivo_log, 'a') as log:
+    log.write(f"Fecha de entrada: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
     log.write("Resumen Final:\n")
     log.write(f"Total de archivos procesados: {total_archivos}\n")
     log.write(f"Total de líneas procesadas: {total_lineas}\n")
@@ -370,3 +372,149 @@ with open(archivo_resultados, 'a') as log:
 print(f"Resultados globales guardados en: {archivo_resultados}")
 time.sleep(5)
 os.system('clear')
+
+import csv
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Supongamos que 'datos_globales' contiene todos los datos ya procesados
+archivo_csv = 'E04/dades/resultados_generales.csv'
+
+# Calculamos el total de precipitación de todos los años para obtener el promedio
+total_precip = sum(datos['total'] for datos in datos_globales.values())
+num_anos = len(datos_globales)
+promedio_precip = total_precip / num_anos if num_anos > 0 else 0
+
+# Variables para identificar los años más y menos pluviosos
+max_precipitacion = -float('inf')
+min_precipitacion = float('inf')
+anio_max = None
+anio_min = None
+
+# Datos para gráficos
+anos = []
+total_precipitaciones = []
+clasificaciones = []
+
+# Abre el archivo CSV en modo escritura
+with open(archivo_csv, 'w', newline='') as csvfile:
+    fieldnames = ['Año', 'Total Precipitación (L/m²)', 'Media Anual (L/m² al Año)', 'Tasa de Variación (%)', 'Clasificación']
+    
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    
+    # Escribe el encabezado en el archivo CSV
+    writer.writeheader()
+    
+    anio_anterior = None
+    total_anterior = None
+
+    for anio, datos in sorted(datos_globales.items()):
+        total_anual = datos['total']
+        media_anual = (total_anual / datos['dias'] * 365) if datos['dias'] > 0 else 0
+
+        # Calcular la tasa de variación sobre el total anual
+        if anio_anterior is not None and total_anterior > 0:
+            tasa_variacion = ((total_anual - total_anterior) / total_anterior) * 100
+        else:
+            tasa_variacion = None
+        
+        # Clasificar el año según su precipitación
+        if total_anual > promedio_precip:
+            clasificacion = "Pluvioso"
+        elif total_anual < promedio_precip:
+            clasificacion = "Seco"
+        else:
+            clasificacion = "Normal"
+        
+        # Actualizar los años más y menos pluviosos
+        if total_anual > max_precipitacion:
+            max_precipitacion = total_anual
+            anio_max = anio
+        
+        if total_anual < min_precipitacion:
+            min_precipitacion = total_anual
+            anio_min = anio
+
+        # Añadir datos para los gráficos
+        anos.append(anio)
+        total_precipitaciones.append(total_anual)
+        clasificaciones.append(clasificacion)
+
+        # Crear un diccionario con los resultados
+        if tasa_variacion is not None:
+            row = {
+                'Año': anio,
+                'Total Precipitación (L/m²)': int(total_anual),
+                'Media Anual (L/m² al Año)': round(media_anual, 2),
+                'Tasa de Variación (%)': round(tasa_variacion, 2),
+                'Clasificación': clasificacion
+            }
+        else:
+            row = {
+                'Año': anio,
+                'Total Precipitación (L/m²)': int(total_anual),
+                'Media Anual (L/m² al Año)': round(media_anual, 2),
+                'Tasa de Variación (%)': 'N/A',
+                'Clasificación': clasificacion
+            }
+
+        # Escribir la fila en el archivo CSV
+        writer.writerow(row)
+
+        # Actualizar valores del año anterior
+        anio_anterior = anio
+        total_anterior = total_anual
+
+# Añadir los años más y menos pluviosos al final del archivo CSV
+with open(archivo_csv, 'a', newline='') as csvfile:
+    writer = csv.writer(csvfile)
+    
+    # Escribir una fila adicional con los resultados de los años más y menos pluviosos
+    writer.writerow([])
+    writer.writerow(["Año Más Lluvioso", anio_max, "Total Precipitación (L/m²)", max_precipitacion])
+    writer.writerow(["Año Menos Lluvioso", anio_min, "Total Precipitación (L/m²)", min_precipitacion])
+
+print(f"Resultados globales exportados a: {archivo_csv}")
+
+# Mostrar estadísticas visuales
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import warnings
+import datetime
+
+# Suprimir advertencias de FutureWarning (opcional, si necesitas mantener limpio el entorno)
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
+# Gráfico de barras: Precipitación total por año
+plt.figure(figsize=(10,6))
+sns.barplot(x=anos, y=total_precipitaciones, hue=anos, palette="viridis", dodge=False)  # Usamos `hue=anos` y `dodge=False` para mantener el formato esperado
+plt.title("Precipitación Total por Año")
+plt.xlabel("Año")
+plt.ylabel("Precipitación Total (L/m²)")
+plt.xticks(rotation=45)
+plt.legend([], [], frameon=False)  # Eliminamos la leyenda si no es necesaria
+plt.tight_layout()
+plt.show()
+
+# Gráfico de líneas: Tasa de variación de la precipitación
+tasa_variacion = [None if x == 0 else (total_precipitaciones[i] - total_precipitaciones[i-1]) / total_precipitaciones[i-1] * 100 for i, x in enumerate(total_precipitaciones)]
+plt.figure(figsize=(10,6))
+sns.lineplot(x=anos[1:], y=tasa_variacion[1:], marker="o", color="blue")
+plt.title("Tasa de Variación de la Precipitación entre Años")
+plt.xlabel("Año")
+plt.ylabel("Tasa de Variación (%)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+# Gráfico de dispersión: Relación entre precipitación total y clasificación
+plt.figure(figsize=(10,6))
+sns.scatterplot(x=anos, y=total_precipitaciones, hue=clasificaciones, palette="coolwarm", s=100)
+plt.title("Relación entre Precipitación Total y Clasificación")
+plt.xlabel("Año")
+plt.ylabel("Precipitación Total (L/m²)")
+plt.legend(title="Clasificación")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()

@@ -1,3 +1,11 @@
+Fecha de entrada: 2025-01-28 12:16:08
+Resumen Final:
+Total de archivos procesados: 16064
+Total de líneas procesadas: 18312960
+Total de valores procesados (excluyendo -999): 604327680
+Total de valores faltantes (-999): 10682560
+Porcentaje de valores faltantes sobre el total de valores: 1.77%
+
 Años pasados más lluviosos (2006-2024):
 Año   Total Precipitación (L/m²)    
 ====================================
@@ -58,7 +66,7 @@ Año   Total Precipitación (L/m²)
 
 Promedios de Precipitación:
 Promedio años pasados (2006-2024): 64289775.58 L/m²
-Promedio años futuros (2025-2100): 59611595.33 L/m²
+Promedio años futuros (2025-2100): 59612778.95 L/m²
 
 Mayor Incremento y Decremento de Precipitación:
 Mayor incremento: Año 2092 con 28799911 L/m²
@@ -69,12 +77,11 @@ Mayor decremento: Año 2023 con -37830781 L/m²
 Días con más y menos precipitación:
 Día más lluvioso en años pasados (2006-2024): Año 2013 - Día 19 con 807.0 L/m²
 Día menos lluvioso en años pasados (2006-2024): Año 2006 - Día 1 con 0.0 L/m²
-Día más lluvioso en años futuros (2025-2100): Año 2073 - Día 31 con 995.0 L/m²
+Día más lluvioso en años futuros (2025-2100): Año 2073 - Día 31 con 1343.0 L/m²
 Día menos lluvioso en años futuros (2025-2100): Año 2025 - Día 1 con 0.0 L/m²
 
 ===========================================================================================
 
-<<<<<<< HEAD
 Año   Total Precipitación (L/m²)    Media Anual (L/m² al Año)     Tasa de Variación (%)    
 ===========================================================================================
 2006  81652279                      5082.94                       N/A                      
@@ -173,19 +180,3 @@ Año   Total Precipitación (L/m²)    Media Anual (L/m² al Año)     Tasa de V
 2099  62184030                      3871.02                       34.73                    
 2100  60598786                      3772.33                       -2.55                    
 
-Resumen Final:
-Total de archivos procesados: 4
-Total de líneas procesadas: 4560
-Total de valores procesados (excluyendo -999): 150480
-Total de valores faltantes (-999): 2660
-Porcentaje de valores faltantes sobre el total de valores: 1.77%
-
-Resumen Final:
-Total de archivos procesados: 4
-Total de líneas procesadas: 4560
-Total de valores procesados (excluyendo -999): 150480
-Total de valores faltantes (-999): 2660
-Porcentaje de valores faltantes sobre el total de valores: 1.77%
-
-=======
->>>>>>> 05acd725ef8a430aec2180e600c2f542f2c9643c
