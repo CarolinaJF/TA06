@@ -1,162 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Datos</title>
-   <link rel="stylesheet" href="css/estilos.css">
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Incluimos Chart.js -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datos</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Incluimos Chart.js -->
 </head>
-<body>
-   <h1>Estadísticas</h1>
+   <header>
+       <h1>Estadísticas</h1>
 
-   <!-- Tabla principal -->
-   <h2>Datos Principales</h2>
-   <table id="tablaPrincipal">
-       <thead>
-           <tr id="encabezadoPrincipal"></tr>
-       </thead>
-       <tbody>
-       </tbody>
-   </table>
 
-   <!-- Tabla de las últimas dos filas (sin encabezados) -->
-   <h2></h2>
-   <table id="tablaUltimasFilas">
-       <tbody>
-       </tbody>
-   </table>
+     <!-- Tabla principal -->
+       <h2>Datos Principales</h2>
+       <table id="tablaPrincipal">
+         <thead>
+             <tr id="encabezadoPrincipal"></tr>
+         </thead>
+         <tbody>
+         </tbody>
+       </table>
 
-   <!-- Gráfico de estadísticas -->
-   <h2>Gráfico de Estadísticas</h2>
-   <canvas id="graficoEstadisticas" width="400" height="200"></canvas> <!-- Canvas para el gráfico -->
 
-   <script>
-       document.addEventListener("DOMContentLoaded", function() {
-           const tablaPrincipalHead = document.querySelector("#tablaPrincipal thead tr");
-           const tablaPrincipalBody = document.querySelector("#tablaPrincipal tbody");
-           const tablaUltimasFilasBody = document.querySelector("#tablaUltimasFilas tbody");
+   </header>
 
-           // Ruta al archivo CSV
-           const filePath = 'dades/resultados_generales.csv';
 
-           // Función para leer el archivo CSV
-           fetch(filePath)
-               .then(response => response.text())
-               .then(data => {
-                   const rows = data.split('\n').filter(row => row.trim() !== '');
+  <!-- Tabla de las últimas dos filas (sin encabezados) -->
+  <h2></h2>
+  <table id="tablaUltimasFilas">
+      <tbody>
+      </tbody>
+  </table>
 
-                   // Extraer la primera línea como encabezado
-                   const headerRow = rows[0].split(',');
 
-                   // Crear los encabezados de la tabla principal
-                   headerRow.forEach(header => {
-                       const th = document.createElement('th');
-                       th.textContent = header.trim();
-                       tablaPrincipalHead.appendChild(th);
-                   });
+  <!-- Gráfico de estadísticas -->
+  <h2>Gráfico de Estadísticas</h2>
+  <canvas id="graficoEstadisticas" width="400" height="200"></canvas> <!-- Canvas para el gráfico -->
 
-                   // Extraer las líneas principales (todas menos la primera y las últimas dos)
-                   const mainRows = rows.slice(1, -2);
 
-                   // Extraer las dos últimas líneas
-                   const lastTwoRows = rows.slice(-2);
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const tablaPrincipalHead = document.querySelector("#tablaPrincipal thead tr");
+          const tablaPrincipalBody = document.querySelector("#tablaPrincipal tbody");
+          const tablaUltimasFilasBody = document.querySelector("#tablaUltimasFilas tbody");
 
-                   // Función para agregar filas a una tabla
-                   const addRowsToTable = (rows, tableBody) => {
-                       rows.forEach(row => {
-                           const cols = row.split(',');
-                           if (cols.length > 1) {
-                               const tr = document.createElement('tr');
-                               cols.forEach(col => {
-                                   const td = document.createElement('td');
-                                   td.textContent = col.trim();
-                                   tr.appendChild(td);
-                               });
-                               tableBody.appendChild(tr);
-                           }
-                       });
-                   };
 
-                   // Agregar las filas principales a la tabla principal
-                   addRowsToTable(mainRows, tablaPrincipalBody);
+          // Ruta al archivo CSV
+          const filePath = 'dades/resultados_generales.csv';
 
-                   // Agregar las últimas dos filas a la tabla correspondiente
-                   addRowsToTable(lastTwoRows, tablaUltimasFilasBody);
 
-                   // Crear el gráfico de estadísticas
-                   const etiquetas = [];  // Para almacenar las etiquetas (por ejemplo, fechas, nombres, etc.)
-                   const valores = [];    // Para almacenar los valores numéricos (por ejemplo, resultados)
+          // Función para leer el archivo CSV
+          fetch(filePath)
+              .then(response => response.text())
+              .then(data => {
+                  const rows = data.split('\n').filter(row => row.trim() !== '');
 
-                   // Extraer las etiquetas y los valores de las filas principales
-                   mainRows.forEach(row => {
-                       const cols = row.split(',');
-                       etiquetas.push(cols[0].trim()); // La primera columna es para las etiquetas
-                       valores.push(parseFloat(cols[1].trim())); // La segunda columna es para los valores numéricos
-                   });
 
-                   // Crear el gráfico
-                   const ctx = document.getElementById('graficoEstadisticas').getContext('2d');
-                   new Chart(ctx, {
-                       type: 'bar',  // Tipo de gráfico: barras
-                       data: {
-                           labels: etiquetas,  // Etiquetas del eje X
-                           datasets: [{
-                               label: 'Estadísticas',  // Nombre del dataset
-                               data: valores,  // Datos del eje Y
-                               backgroundColor: 'rgba(54, 162, 235, 0.2)', // Color de las barras
-                               borderColor: 'rgba(54, 162, 235, 1)',  // Color del borde de las barras
-                               borderWidth: 1
-                           }]
-                       },
-                       options: {
-                           scales: {
-                               y: {
-                                   beginAtZero: true,  // Asegura que el eje Y empiece desde 0
-                                   ticks: {
-                                       font: {
-                                           size: 14,  // Aumentar tamaño de las etiquetas en el eje Y
-                                           weight: 'bold',
-                                           family: 'Arial',
-                                           color: '#ffffff'  // Cambiar color de las etiquetas del eje Y
-                                       }
-                                   }
-                               },
-                               x: {
-                                   ticks: {
-                                       font: {
-                                           size: 14,  // Aumentar tamaño de las etiquetas en el eje X
-                                           weight: 'bold',
-                                           family: 'Arial',
-                                           color: '#ffffff'  // Cambiar color de las etiquetas del eje X
-                                       }
-                                   }
-                               }
-                           },
-                           plugins: {
-                               legend: {
-                                   labels: {
-                                       font: {
-                                           size: 16,  // Aumentar tamaño de la leyenda
-                                           weight: 'bold',
-                                           family: 'Arial',
-                                           color: '#ffffff'  // Cambiar color de la leyenda
-                                       }
-                                   }
-                               }
-                           },
-                           elements: {
-                               bar: {
-                                   borderRadius: 5  // Bordes redondeados en las barras
-                               }
-                           }
-                       }
-                   });
-               })
-               .catch(error => {
-                   console.error('Error al leer el archivo CSV:', error);
-               });
-       });
-   </script>
+                  // Extraer la primera línea como encabezado
+                  const headerRow = rows[0].split(',');
+
+
+                  // Crear los encabezados de la tabla principal
+                  headerRow.forEach(header => {
+                      const th = document.createElement('th');
+                      th.textContent = header.trim();
+                      tablaPrincipalHead.appendChild(th);
+                  });
+
+
+                  // Extraer las líneas principales (todas menos la primera y las últimas dos)
+                  const mainRows = rows.slice(1, -2);
+
+
+                  // Extraer las dos últimas líneas
+                  const lastTwoRows = rows.slice(-2);
+
+
+                  // Función para agregar filas a una tabla
+                  const addRowsToTable = (rows, tableBody) => {
+                      rows.forEach(row => {
+                          const cols = row.split(',');
+                          if (cols.length > 1) {
+                              const tr = document.createElement('tr');
+                              cols.forEach(col => {
+                                  const td = document.createElement('td');
+                                  td.textContent = col.trim();
+                                  tr.appendChild(td);
+                              });
+                              tableBody.appendChild(tr);
+                          }
+                      });
+                  };
+
+
+                  // Agregar las filas principales a la tabla principal
+                  addRowsToTable(mainRows, tablaPrincipalBody);
+
+
+                  // Agregar las últimas dos filas a la tabla correspondiente
+                  addRowsToTable(lastTwoRows, tablaUltimasFilasBody);
+
+
+                  // Crear el gráfico de estadísticas
+                  const etiquetas = [];  // Para almacenar las etiquetas (por ejemplo, fechas, nombres, etc.)
+                  const valores = [];    // Para almacenar los valores numéricos (por ejemplo, resultados)
+
+
+                  // Extraer las etiquetas y los valores de las filas principales
+                  mainRows.forEach(row => {
+                      const cols = row.split(',');
+                      etiquetas.push(cols[0].trim()); // La primera columna es para las etiquetas
+                      valores.push(parseFloat(cols[1].trim())); // La segunda columna es para los valores numéricos
+                  });
+
+
+                  // Crear el gráfico
+                  const ctx = document.getElementById('graficoEstadisticas').getContext('2d');
+                  new Chart(ctx, {
+                      type: 'bar',  // Tipo de gráfico: barras
+                      data: {
+                          labels: etiquetas,  // Etiquetas del eje X
+                          datasets: [{
+                              label: 'Estadísticas',  // Nombre del dataset
+                              data: valores,  // Datos del eje Y
+                              backgroundColor: 'rgba(54, 162, 235, 0.2)', // Color de las barras
+                              borderColor: 'rgba(54, 162, 235, 1)',  // Color del borde de las barras
+                              borderWidth: 1
+                          }]
+                      },
+                      options: {
+                          scales: {
+                              y: {
+                                  beginAtZero: true,  // Asegura que el eje Y empiece desde 0
+                                  ticks: {
+                                      font: {
+                                          size: 14,  // Aumentar tamaño de las etiquetas en el eje Y
+                                          weight: 'bold',
+                                          family: 'Arial',
+                                          color: '#ffffff'  // Cambiar color de las etiquetas del eje Y
+                                      }
+                                  }
+                              },
+                              x: {
+                                  ticks: {
+                                      font: {
+                                          size: 14,  // Aumentar tamaño de las etiquetas en el eje X
+                                          weight: 'bold',
+                                          family: 'Arial',
+                                          color: '#ffffff'  // Cambiar color de las etiquetas del eje X
+                                      }
+                                  }
+                              }
+                          },
+                          plugins: {
+                              legend: {
+                                  labels: {
+                                      font: {
+                                          size: 16,  // Aumentar tamaño de la leyenda
+                                          weight: 'bold',
+                                          family: 'Arial',
+                                          color: '#ffffff'  // Cambiar color de la leyenda
+                                      }
+                                  }
+                              }
+                          },
+                          elements: {
+                              bar: {
+                                  borderRadius: 5  // Bordes redondeados en las barras
+                              }
+                          }
+                      }
+                  });
+              })
+              .catch(error => {
+                  console.error('Error al leer el archivo CSV:', error);
+              });
+      });
+  </script>
+  <footer>
+
+
+   <p>
+       Estadísticas realizadas con datos extraidos de OpenData AEMET.
+       Los datos extraidos con metodo regresión Rejilla, modelo MIROC5, escenario RCP6.0, variable Precipitación, periodo 2006-2100.
+   </p>
+
+
+  </footer>
 </body>
 </html>
