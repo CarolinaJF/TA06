@@ -10,6 +10,6 @@ It is for this reason that we set ourselves the challenge of processing the data
 
 1. [🌐 Validación de datos](./E01/E01.md)  
 2. [📊 Análisis de Datos y Estadísticas](./E02/E02.md)
-3. [🛠️ Under construction](./E03/E03.md)
-4. [🛠️ Under construction](./E04/E04.md)
-5. [🛠️ Under construction](./E05/E05.md)
+3. [📈 Generar resultados](./E03/E03.md)
+4. [✅ Publicar los datos](./E04/E04.md)
+6. [💭 Reflexión](./E05/E05.md)
