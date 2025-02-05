@@ -385,7 +385,7 @@ total_precip = sum(datos['total'] for datos in datos_globales.values())
 num_anos = len(datos_globales)
 promedio_precip = total_precip / num_anos if num_anos > 0 else 0
 
-# Variables para identificar los años más y menos pluviosos
+# Variables para identificar los años más y menos lluviosos
 max_precipitacion = -float('inf')
 min_precipitacion = float('inf')
 anio_max = None
@@ -420,13 +420,13 @@ with open(archivo_csv, 'w', newline='') as csvfile:
         
         # Clasificar el año según su precipitación
         if total_anual > promedio_precip:
-            clasificacion = "Pluvioso"
+            clasificacion = "Lluvioso"
         elif total_anual < promedio_precip:
             clasificacion = "Seco"
         else:
             clasificacion = "Normal"
         
-        # Actualizar los años más y menos pluviosos
+        # Actualizar los años más y menos lluviosos
         if total_anual > max_precipitacion:
             max_precipitacion = total_anual
             anio_max = anio
@@ -465,11 +465,11 @@ with open(archivo_csv, 'w', newline='') as csvfile:
         anio_anterior = anio
         total_anterior = total_anual
 
-# Añadir los años más y menos pluviosos al final del archivo CSV
+# Añadir los años más y menos lluviosos al final del archivo CSV
 with open(archivo_csv, 'a', newline='') as csvfile:
     writer = csv.writer(csvfile)
     
-    # Escribir una fila adicional con los resultados de los años más y menos pluviosos
+    # Escribir una fila adicional con los resultados de los años más y menos lluviosos
     writer.writerow([])
     writer.writerow(["Año Más Lluvioso", anio_max, "Total Precipitación (L/m²)", max_precipitacion])
     writer.writerow(["Año Menos Lluvioso", anio_min, "Total Precipitación (L/m²)", min_precipitacion])
