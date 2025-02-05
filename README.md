@@ -8,7 +8,7 @@ It is for this reason that we set ourselves the challenge of processing the data
 
 # [**Página web**](/E04/index.html)
 
-# [**Mapa**](/zmapa/web.html){: .btn .btn-primary .float-right}
+# [**Mapa**](/zmapa/web.html)
 
 ## 📑 **Índice**
 
