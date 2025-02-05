@@ -6,14 +6,14 @@ from datetime import datetime
 import csv
 
 # Ruta personalizada para los archivos de log (puedes cambiar esta ruta)
-ruta_log = 'E03'  # Cambia esto por la ruta deseada, por ejemplo: 'C:/mis_logs' o '/home/usuario/logs'
+ruta_log = 'E04/dades'  # Cambia esto por la ruta deseada, por ejemplo: 'C:/mis_logs' o '/home/usuario/logs'
 
 # Verificar si la ruta existe, si no, crearla
 if not os.path.exists(ruta_log):
     os.makedirs(ruta_log)
 
 # Ruta de la carpeta que contiene los archivos .dat
-carpeta = 'E01/ayuda1'
+carpeta = 'E01/precip.MIROC5.RCP60.2006-2100.SDSM_REJ'
 
 # Crear un archivo de log para guardar los errores (modo 'a' para no sobrescribir)
 archivo_log = os.path.join(ruta_log, 'datos.log')
@@ -411,6 +411,8 @@ with open(archivo_log, 'a', encoding='utf-8') as log:
 
     log.write("\n")
 
+import matplotlib.pyplot as plt  # Importar matplotlib para generar gráficos
+
 # Crear archivo CSV con los resultados
 archivo_csv = os.path.join(ruta_log, 'resultados.csv')
 with open(archivo_csv, 'w', newline='', encoding='utf-8') as csvfile:
@@ -448,5 +450,60 @@ with open(archivo_csv, 'w', newline='', encoding='utf-8') as csvfile:
         anio_anterior = anio
         total_anterior = total_anual
 
+    # Añadir un separador visual
+    writer.writerow([])  # Línea vacía
+    writer.writerow(["Años más lluviosos:"])
+    writer.writerow(['Año', 'Total Precipitación (L/m²)'])
+
+    # Obtener los 5 años más lluviosos
+    años_mas_lluviosos = sorted(datos_globales.items(), key=lambda x: x[1]['total'], reverse=True)[:5]
+    for anio, datos in años_mas_lluviosos:
+        writer.writerow([anio, int(datos['total'])])
+
+    # Añadir un separador visual
+    writer.writerow([])  # Línea vacía
+    writer.writerow(["Años menos lluviosos:"])
+    writer.writerow(['Año', 'Total Precipitación (L/m²)'])
+
+    # Obtener los 5 años menos lluviosos
+    años_menos_lluviosos = sorted(datos_globales.items(), key=lambda x: x[1]['total'])[:5]
+    for anio, datos in años_menos_lluviosos:
+        writer.writerow([anio, int(datos['total'])])
+
+# Generar gráficos
+años = sorted(datos_globales.keys())
+precipitaciones_totales = [datos_globales[anio]['total'] for anio in años]
+
+# Gráfico de barras
+plt.figure(figsize=(10, 6))
+plt.bar(años, precipitaciones_totales, color='blue')
+plt.title('Precipitación Total por Año (Gráfico de Barras)')
+plt.xlabel('Año')
+plt.ylabel('Precipitación Total (L/m²)')
+plt.grid(axis='y')
+plt.savefig(os.path.join(ruta_log, 'grafico_barras.png'))  # Guardar gráfico de barras
+plt.close()
+
+# Gráfico de líneas
+plt.figure(figsize=(10, 6))
+plt.plot(años, precipitaciones_totales, marker='o', color='green', linestyle='-')
+plt.title('Precipitación Total por Año (Gráfico de Líneas)')
+plt.xlabel('Año')
+plt.ylabel('Precipitación Total (L/m²)')
+plt.grid(True)
+plt.savefig(os.path.join(ruta_log, 'grafico_lineas.png'))  # Guardar gráfico de líneas
+plt.close()
+
+# Gráfico de puntos
+plt.figure(figsize=(10, 6))
+plt.scatter(años, precipitaciones_totales, color='red')
+plt.title('Precipitación Total por Año (Gráfico de Puntos)')
+plt.xlabel('Año')
+plt.ylabel('Precipitación Total (L/m²)')
+plt.grid(True)
+plt.savefig(os.path.join(ruta_log, 'grafico_puntos.png'))  # Guardar gráfico de puntos
+plt.close()
+
 print(f"Resultados globales guardados en: {archivo_log}")
 print(f"Resultados en formato CSV guardados en: {archivo_csv}")
+print(f"Gráficos guardados en: {ruta_log}")
