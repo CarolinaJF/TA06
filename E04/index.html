@@ -5,32 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Datos</title>
   <link rel="stylesheet" href="css/estilos.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    .tabla-generada {
-      margin-bottom: 20px;  /* Margin para cada tabla */
-      border-collapse: collapse;
-      width: 100%;
-    }
-    .tabla-generada, .tabla-generada th, .tabla-generada td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: left;
-    }
-    
-    /* Contenedor de la tabla con un margen inferior mayor */
-    .tabla-container {
-      margin-bottom: 40px;  /* Ajusta el valor de separación entre tablas */
-    }
-  </style>
+
 </head>
 <body>
   <header>
     <h1>Estadísticas</h1>
   </header>
   <div id="contenedorTablas"></div>
-  <h2>Gráfico de Estadísticas</h2>
-  <canvas id="graficoEstadisticas" width="400" height="200"></canvas>
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
         const contenedorTablas = document.getElementById("contenedorTablas");
@@ -87,48 +69,20 @@
                         contenedorTablas.appendChild(tableContainer); // Se agrega el contenedor de la tabla con separación
                     }
                 });
-                
-                // Crear el gráfico solo con los datos de la primera tabla (como antes)
-                const etiquetas = [];
-                const valores = [];
-                const firstRange = ranges[0]; // El primer rango para las etiquetas y valores
-                const firstSubset = lines.slice(firstRange[0], firstRange[1] + 1);
-                
-                firstSubset.forEach((row, rowIndex) => {
-                    const cols = row.split(',');
-                    if (rowIndex > 0) {  // Omitimos la primera fila para las etiquetas
-                        etiquetas.push(cols[0].trim());
-                        valores.push(parseFloat(cols[2].trim())); // Usamos el tercer valor (índice 2) para el gráfico
-                    }
-                });
-
-                const ctx = document.getElementById('graficoEstadisticas').getContext('2d');
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: etiquetas,
-                        datasets: [{
-                            label: 'Estadísticas',
-                            data: valores,
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
             })
             .catch(error => {
                 console.error('Error al leer el archivo CSV:', error);
             });
     });
   </script>
+
+  <!-- Contenedor de imágenes -->
+  <div class="imagenes-container">
+    <img src="dades/dispersion_variacion_anual.png" alt="Imagen 1"> <br>
+    <img src="dades/media_anual_precipitacion.png" alt="Imagen 2">
+    <img src="dades/total_precipitacion_anual.png" alt="Imagen 3">
+  </div>
+
   <footer>
     <p>
       Estadísticas realizadas con datos extraídos de OpenData AEMET.
