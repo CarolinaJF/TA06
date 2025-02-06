@@ -9,7 +9,7 @@ body {
    line-height: 1.6;
 }
 
-h1, h2 {
+h1 {
    text-align: center;
    color: #0277bd;
    margin-top: 20px;
@@ -18,7 +18,8 @@ h1, h2 {
 
 h2 {
    margin-top: 30px;
-   font-size: 1.6rem;
+   color: #003366;
+   font-size: 1.5rem;
    letter-spacing: 1.5px;
 }
 
@@ -71,7 +72,7 @@ table tbody tr:hover {
 .tabla-container {
    margin-bottom: 30px;
    padding: 10px;
-   background-color: #fafafa; /* Fondo suave alrededor de las tablas */
+   background-color: #a7ffeb; /* Fondo suave alrededor de las tablas */
    border-radius: 8px;
    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
