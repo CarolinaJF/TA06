@@ -5,11 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Datos</title>
   <link rel="stylesheet" href="css/estilos.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
     <h1>Resúmenes y Gráficos Estadísticos</h1>
   </header>
+
+  <!-- Contenedor para el gráfico -->
+  <h2>Total de Precipitaciones anuales</h2>
+  <canvas id="graficoEstadisticas" width="400" height="200"></canvas>
 
   <div id="contenedorTablas"></div>
 
@@ -18,11 +23,65 @@
         const contenedorTablas = document.getElementById("contenedorTablas");
         const filePath = 'dades/resultados.csv';
         
-        fetch(filePath)
+        // Función para generar el gráfico con las líneas 1-96 (índices 0 a 95)
+        function generarGrafico() {
+          fetch(filePath)
             .then(response => response.text())
             .then(data => {
                 // Dividir el archivo en líneas
                 const lines = data.split('\n').filter(line => line.trim() !== ''); // Eliminamos las líneas vacías
+                
+                // Obtener las líneas 1-96 (índices 0 a 95)
+                const subset = lines.slice(0, 96); // Líneas 1-96 (índice 0 a 95)
+
+                let etiquetas = [];
+                let valores = [];
+
+                // Procesamos las líneas seleccionadas (1-96)
+                subset.forEach((row, rowIndex) => {
+                    const cols = row.split(',');
+                    if (rowIndex > 0) {  // Ignoramos la primera fila de encabezado
+                        etiquetas.push(cols[0].trim()); // Tomamos la primera columna como etiquetas
+                        valores.push(parseFloat(cols[1].trim())); // Tomamos la segunda columna como valores
+                    }
+                });
+
+                // Crear el gráfico usando los datos seleccionados
+                const ctx = document.getElementById('graficoEstadisticas').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: etiquetas,  // Usamos las etiquetas (primer columna)
+                        datasets: [{
+                            label: 'Valores de la Segunda Columna',
+                            data: valores,  // Usamos los valores (segunda columna)
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error al leer el archivo CSV:', error);
+            });
+        }
+
+        // Generamos el gráfico automáticamente al cargar la página
+        generarGrafico();
+
+        // Cargar y mostrar las tablas
+        fetch(filePath)
+            .then(response => response.text())
+            .then(data => {
+                const lines = data.split('\n').filter(line => line.trim() !== '');
                 
                 // Especificamos los rangos de las líneas que queremos procesar
                 const ranges = [
@@ -33,25 +92,23 @@
                     [114, 117], // Líneas 119-122 (índice 118 a 121)
                     [118, 123]  // Líneas 124-129 (índice 123 a 128)
                 ];
-                
-                // Procesamos los rangos definidos
+
                 ranges.forEach((range, index) => {
                     const [start, end] = range;
-                    const subset = lines.slice(start, end + 1); // Extraemos el rango de líneas
+                    const subset = lines.slice(start, end + 1);
 
                     if (subset.length > 0) {
                         const tableContainer = document.createElement("div");
                         tableContainer.classList.add("tabla-container");  // Clase añadida para separación
                         
-                        // Solo agregamos un header 2 para la tabla 2 (índice 1) y tabla 3 (índice 2)
                         if (index === 1) {
                             const header = document.createElement("h2");
-                            header.textContent = "Años más lluviosos (basado en la media anual)";  // Título para la tabla 2
-                            tableContainer.appendChild(header);  // Añadir el header al contenedor de la tabla
+                            header.textContent = "Años más lluviosos (basado en la media anual)";
+                            tableContainer.appendChild(header);
                         } else if (index === 2) {
                             const header = document.createElement("h2");
-                            header.textContent = "Años menos lluviosos (basado en la media anual)";  // Título para la tabla 3
-                            tableContainer.appendChild(header);  // Añadir el header al contenedor de la tabla
+                            header.textContent = "Años menos lluviosos (basado en la media anual)";
+                            tableContainer.appendChild(header);
                         }
                         
                         const table = document.createElement("table");
@@ -78,7 +135,7 @@
                         table.appendChild(thead);
                         table.appendChild(tbody);
                         tableContainer.appendChild(table);
-                        contenedorTablas.appendChild(tableContainer); // Se agrega el contenedor de la tabla con separación
+                        contenedorTablas.appendChild(tableContainer);
                     }
                 });
             })
