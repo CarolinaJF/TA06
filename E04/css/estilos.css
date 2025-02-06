@@ -21,7 +21,6 @@ h2 {
    margin-top: 20px;
    color: #003366;
    font-size: 1.5rem;
-   letter-spacing: 1.5px;
 }
 
 /* Tablas generales */
@@ -31,7 +30,7 @@ table {
    margin: 20px auto;
    border-collapse: collapse;
    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
-   background: #fff;
+   background: #e3f2fd;
    border-radius: 8px;
    overflow: hidden;
    transition: all 0.3s ease-in-out;
