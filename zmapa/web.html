@@ -30,12 +30,16 @@
                 .then(data => {
                     const rows = data.split('\n').slice(1); // Ignorar la primera fila (encabezados)
                     rows.forEach(row => {
-                        const [nombre, latitud, longitud] = row.split(',');
+                        if (row.trim() === "") return; // Ignorar líneas vacías
+                        const [nombre, latitud, longitud] = row.split(',').map(item => item.trim());
+                        if (!nombre || !latitud || !longitud) return; // Ignorar filas mal formateadas
                         const marker = L.marker([parseFloat(latitud), parseFloat(longitud)]).addTo(map);
                         marker.bindPopup(nombre);
                         markers[nombre] = marker;
+                        console.log(`Marcador añadido: ${nombre} - Lat: ${latitud}, Lon: ${longitud}`);
                     });
-                });
+                })
+                .catch(error => console.error('Error cargando el CSV:', error));
         }
 
         function searchPluviometer() {
@@ -44,7 +48,7 @@
                 map.setView(markers[searchValue].getLatLng(), 15); // Centrar y hacer zoom en el marcador
                 markers[searchValue].openPopup();
             } else {
-                alert('Pluviómetro no encontrado');
+                alert('No se encontró un pluviómetro con el ID: ' + searchValue);
             }
         }
 
