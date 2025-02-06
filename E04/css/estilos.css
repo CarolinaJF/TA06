@@ -73,7 +73,7 @@ table tbody tr:hover {
 .tabla-container {
    margin-bottom: 30px;
    padding: 10px;
-   background-color: #a7ffeb; /* Fondo suave alrededor de las tablas */
+   background-color: #fafafa; /* Fondo suave alrededor de las tablas */
    border-radius: 8px;
    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
