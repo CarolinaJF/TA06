@@ -8,7 +8,7 @@ It is for this reason that we set ourselves the challenge of processing the data
 
 ### Haz click [**aquí**](/E04/index.html) para visualizar gráficos y estadísticas de proyección de precipitaciones en España.
 
-En esta página web se encuentran los resúmenes y gráficos Estadísticos realizados a partir de los datos que hemos exportado de la AEMET.
+En esta web encontrarás resúmenes y gráficos estadísticos realizados a partir de datos exportados de la AEMET.
 
 
 ## 📑 **Índice**
