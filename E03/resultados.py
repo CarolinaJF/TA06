@@ -60,7 +60,7 @@ anio_maximo = 2100
 # Inicializamos la barra de progreso con tqdm
 with open(archivo_log, 'a', encoding='utf-8') as log:
     # Usamos tqdm para la barra de progreso en los archivos
-    for archivo in tqdm(archivos, desc="Procesando archivos", unit="archivo"):
+    for archivo in tqdm(archivos, desc="Validando archivos", unit="archivo"):
         with open(archivo, 'r') as f:
             contenido = f.read()
 
@@ -509,36 +509,96 @@ with open(archivo_csv, 'w', newline='', encoding='utf-8') as csvfile:
 años = sorted(datos_globales.keys())
 precipitaciones_totales = [datos_globales[anio]['total'] for anio in años]
 
-# Gráfico de barras
-plt.figure(figsize=(10, 6))
-plt.bar(años, precipitaciones_totales, color='blue')
-plt.title('Precipitación Total por Año (Gráfico de Barras)')
+# Gráfico de Columnas: Media Anual de Precipitación por Año
+plt.figure(figsize=(12, 6))
+plt.bar(medias_anuales_por_anio.keys(), medias_anuales_por_anio.values(), color='blue')
+plt.title('Media Anual de Precipitación por Año')
 plt.xlabel('Año')
-plt.ylabel('Precipitación Total (L/m²)')
-plt.grid(axis='y')
-plt.savefig(os.path.join(ruta_log, 'grafico_barras.png'))  # Guardar gráfico de barras
-plt.close()
-
-# Gráfico de líneas
-plt.figure(figsize=(10, 6))
-plt.plot(años, precipitaciones_totales, marker='o', color='green', linestyle='-')
-plt.title('Precipitación Total por Año (Gráfico de Líneas)')
-plt.xlabel('Año')
-plt.ylabel('Precipitación Total (L/m²)')
+plt.ylabel('Media Anual (L/m² al Año)')
 plt.grid(True)
-plt.savefig(os.path.join(ruta_log, 'grafico_lineas.png'))  # Guardar gráfico de líneas
-plt.close()
+plt.savefig(os.path.join(ruta_log, 'media_anual_precipitacion.png'))  # Guardar el gráfico como imagen
 
-# Gráfico de puntos
-plt.figure(figsize=(10, 6))
-plt.scatter(años, precipitaciones_totales, color='red')
-plt.title('Precipitación Total por Año (Gráfico de Puntos)')
+
+# Gráfico de Líneas: Total de Precipitación por Año
+plt.figure(figsize=(12, 6))
+plt.plot(datos_globales.keys(), [datos_globales[anio]['total'] for anio in datos_globales], marker='o', color='green')
+plt.title('Total de Precipitación por Año')
 plt.xlabel('Año')
-plt.ylabel('Precipitación Total (L/m²)')
+plt.ylabel('Total Precipitación (L/m²)')
 plt.grid(True)
-plt.savefig(os.path.join(ruta_log, 'grafico_puntos.png'))  # Guardar gráfico de puntos
-plt.close()
+plt.savefig(os.path.join(ruta_log, 'total_precipitacion_anual.png'))  # Guardar el gráfico como imagen
 
-print(f"Resultados globales guardados en: {archivo_log}")
-print(f"Resultados en formato CSV guardados en: {archivo_csv}")
-print(f"Gráficos guardados en: {ruta_log}")
+
+# 3. Gráfico de Dispersión: Tasa de Variación Anual de Precipitación
+# -------------------------------------------------------------------
+# Crear un diccionario con las tasas de variación anuales
+tasas_variacion = {}
+anio_anterior = None
+total_anterior = None
+
+for anio in sorted(datos_globales):
+    total_anual = datos_globales[anio]['total']
+    
+    if anio_anterior is not None and total_anterior is not None and total_anterior > 0:
+        tasa = ((total_anual - total_anterior) / total_anterior) * 100
+        tasas_variacion[anio] = tasa
+    
+    anio_anterior = anio
+    total_anterior = total_anual
+
+# Configurar el gráfico
+plt.figure(figsize=(14, 7))
+plt.scatter(
+    tasas_variacion.keys(), 
+    tasas_variacion.values(), 
+    color='purple', 
+    alpha=0.6,
+    label='Variación anual'
+)
+
+# Destacar el mayor incremento y decremento
+plt.scatter(
+    mayor_incremento['anio'], 
+    mayor_incremento['incremento'], 
+    color='green', 
+    s=150, 
+    edgecolor='black',
+    label=f'Mayor incremento ({mayor_incremento["incremento"]:.1f}%)'
+)
+
+plt.scatter(
+    mayor_decremento['anio'], 
+    mayor_decremento['decremento'], 
+    color='red', 
+    s=150, 
+    edgecolor='black',
+    label=f'Mayor decremento ({mayor_decremento["decremento"]:.1f}%)'
+)
+
+# Personalizar el gráfico
+plt.title('Variación Anual de Precipitación (vs año anterior)', fontsize=14, pad=20)
+plt.xlabel('Año', fontsize=12)
+plt.ylabel('Tasa de Variación (%)', fontsize=12)
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.axhline(0, color='black', linewidth=1)  # Línea de referencia en %
+
+# Añadir anotaciones
+plt.annotate(
+    f'Año {mayor_incremento["anio"]}\n+{mayor_incremento["incremento"]:.1f}%', 
+    xy=(mayor_incremento['anio'], mayor_incremento['incremento']),
+    xytext=(mayor_incremento['anio']+2, mayor_incremento['incremento']+1),
+    arrowprops=dict(arrowstyle='->', color='green')
+)
+
+plt.annotate(
+    f'Año {mayor_decremento["anio"]}\n{mayor_decremento["decremento"]:.1f}%', 
+    xy=(mayor_decremento['anio'], mayor_decremento['decremento']),
+    xytext=(mayor_decremento['anio']+2, mayor_decremento['decremento']-1),
+    arrowprops=dict(arrowstyle='->', color='red')
+)
+
+plt.legend(loc='upper right')
+plt.tight_layout()
+plt.savefig(os.path.join(ruta_log, 'dispersion_variacion_anual.png'))
+
+print("Completed!")
