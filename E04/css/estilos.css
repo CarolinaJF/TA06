@@ -1,7 +1,7 @@
 /* General */
 body {
    font-family: 'Arial', sans-serif;
-   background-color: #f9f9f9; /* Fondo más claro */
+   background-color: #e0f7fa; /* Fondo más claro */
    color: #333; /* Texto oscuro */
    margin: 0;
    padding: 0;
@@ -11,7 +11,7 @@ body {
 
 h1, h2 {
    text-align: center;
-   color: #444;
+   color: #0277bd;
    margin-top: 20px;
    text-shadow: 1px 1px 4px rgba(200, 200, 200, 0.7); /* Sombra más suave y difusa */
 }

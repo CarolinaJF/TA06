@@ -8,6 +8,8 @@ It is for this reason that we set ourselves the challenge of processing the data
 
 # [**Página web**](/E04/index.html)
 
+En esta página web se encuentran los Resúmenes y Gráficos Estadísticos realizados a partir de los datos que hemos exportado de la AEMET.
+
 # [**Mapa**](/zmapa/web.html)
 
 ## 📑 **Índice**

@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Datos</title>
   <link rel="stylesheet" href="css/estilos.css">
-
 </head>
 <body>
   <header>
     <h1>Resúmenes y Gráficos Estadísticos</h1>
   </header>
+
   <div id="contenedorTablas"></div>
 
   <script>
@@ -27,21 +27,33 @@
                 // Especificamos los rangos de las líneas que queremos procesar
                 const ranges = [
                     [0, 95],    // Líneas 1-96 (índice 0 a 95)
-                    [97, 102],  // Líneas 98-104 (índice 97 a 103)
-                    [104, 109], // Líneas 106-112 (índice 105 a 111)
-                    [110, 113], // Líneas 114-117 (índice 113 a 116)
+                    [97, 102],  // Líneas 98-104 (índice 97 a 103) - Tabla 2
+                    [104, 109], // Líneas 106-112 (índice 105 a 111) - Tabla 3
+                    [110, 113], // Líneas 114-117 (índice 113 a 116) - Tabla 4
                     [114, 117], // Líneas 119-122 (índice 118 a 121)
                     [118, 123]  // Líneas 124-129 (índice 123 a 128)
                 ];
                 
                 // Procesamos los rangos definidos
-                ranges.forEach(range => {
+                ranges.forEach((range, index) => {
                     const [start, end] = range;
                     const subset = lines.slice(start, end + 1); // Extraemos el rango de líneas
 
                     if (subset.length > 0) {
                         const tableContainer = document.createElement("div");
                         tableContainer.classList.add("tabla-container");  // Clase añadida para separación
+                        
+                        // Solo agregamos un header 2 para la tabla 2 (índice 1) y tabla 3 (índice 2)
+                        if (index === 1) {
+                            const header = document.createElement("h2");
+                            header.textContent = "Años más lluviosos (basado en la media anual)";  // Título para la tabla 2
+                            tableContainer.appendChild(header);  // Añadir el header al contenedor de la tabla
+                        } else if (index === 2) {
+                            const header = document.createElement("h2");
+                            header.textContent = "Años menos lluviosos (basado en la media anual)";  // Título para la tabla 3
+                            tableContainer.appendChild(header);  // Añadir el header al contenedor de la tabla
+                        }
+                        
                         const table = document.createElement("table");
                         table.classList.add("tabla-generada");
                         const thead = document.createElement("thead");
