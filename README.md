@@ -6,9 +6,9 @@ It is compulsory to design and deploy innovative solutions and unique technologi
 The objective of this task, is to use the power of data and the most advanced AI technologies trained with “our expertise”, to tailor solutions in the green transformation, be it decarbonization, decontamination, resource saving and regeneration, or any other solution.*
 It is for this reason that we set ourselves the challenge of processing the data that the AEMET “Agencia Estatal de Meteorología” publishes on the web OpenData AEMET.
 
-# [**Página web**](/E04/index.html)
+### Haz click [**aquí**](/E04/index.html) para visualizar gráficos y estadísticas de proyección de precipitaciones en España.
 
-En esta página web se encuentran los Resúmenes y Gráficos Estadísticos realizados a partir de los datos que hemos exportado de la AEMET.
+En esta página web se encuentran los resúmenes y gráficos Estadísticos realizados a partir de los datos que hemos exportado de la AEMET.
 
 
 ## 📑 **Índice**
