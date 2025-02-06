@@ -194,10 +194,10 @@ with open(archivo_log, 'a', encoding='utf-8') as log:
 datos_globales = {}
 
 # Inicializar variables para los días con mayor y menor precipitación
-dia_mas_lluvioso_pasado = {'anio': None, 'dia': None, 'precipitacion': float('-inf')}
-dia_menos_lluvioso_pasado = {'anio': None, 'dia': None, 'precipitacion': float('inf')}
-dia_mas_lluvioso_futuro = {'anio': None, 'dia': None, 'precipitacion': float('-inf')}
-dia_menos_lluvioso_futuro = {'anio': None, 'dia': None, 'precipitacion': float('inf')}
+dia_mas_lluvioso_pasado = {'anio': None, 'mes': None, 'dia': None, 'precipitacion': float('-inf')}
+dia_menos_lluvioso_pasado = {'anio': None, 'mes': None, 'dia': None, 'precipitacion': float('inf')}
+dia_mas_lluvioso_futuro = {'anio': None, 'mes': None, 'dia': None, 'precipitacion': float('-inf')}
+dia_menos_lluvioso_futuro = {'anio': None, 'mes': None, 'dia': None, 'precipitacion': float('inf')}
 
 # Inicializamos el diccionario para almacenar las medias anuales
 medias_anuales_totales = {}
@@ -247,18 +247,18 @@ for archivo in tqdm(archivos, desc="Procesando archivos", unit="archivo"):
                 for idx, precipitacion in enumerate(precipitaciones):
                     if precipitacion != -999:
                         if precipitacion > dia_mas_lluvioso_pasado['precipitacion']:
-                            dia_mas_lluvioso_pasado = {'anio': anio, 'dia': idx + 1, 'precipitacion': precipitacion}
+                            dia_mas_lluvioso_pasado = {'anio': anio, 'mes': mes, 'dia': idx + 1, 'precipitacion': precipitacion}
                         if precipitacion < dia_menos_lluvioso_pasado['precipitacion']:
-                            dia_menos_lluvioso_pasado = {'anio': anio, 'dia': idx + 1, 'precipitacion': precipitacion}
+                            dia_menos_lluvioso_pasado = {'anio': anio, 'mes': mes, 'dia': idx + 1, 'precipitacion': precipitacion}
 
             # Buscar el día con la mayor y menor precipitación para los días futuros
             if 2025 <= anio <= 2100:
                 for idx, precipitacion in enumerate(precipitaciones):
                     if precipitacion != -999:
                         if precipitacion > dia_mas_lluvioso_futuro['precipitacion']:
-                            dia_mas_lluvioso_futuro = {'anio': anio, 'dia': idx + 1, 'precipitacion': precipitacion}
+                            dia_mas_lluvioso_futuro = {'anio': anio, 'mes': mes, 'dia': idx + 1, 'precipitacion': precipitacion}
                         if precipitacion < dia_menos_lluvioso_futuro['precipitacion']:
-                            dia_menos_lluvioso_futuro = {'anio': anio, 'dia': idx + 1, 'precipitacion': precipitacion}
+                            dia_menos_lluvioso_futuro = {'anio': anio, 'mes': mes, 'dia': idx + 1, 'precipitacion': precipitacion}
 
 # Calcular la media anual final por pluviómetro
 medias_anuales = {}
@@ -291,11 +291,11 @@ for anio in suma_medias_por_anio:
 datos_pasados = {k: v for k, v in datos_globales.items() if 2006 <= k <= 2024}
 datos_futuros = {k: v for k, v in datos_globales.items() if 2025 <= k <= 2100}
 
-# Identificar los años más lluviosos y los más secos
-lluviosos_pasados = sorted(datos_pasados.items(), key=lambda x: x[1]['total'], reverse=True)[:10]
-secos_pasados = sorted(datos_pasados.items(), key=lambda x: x[1]['total'])[:10]
-lluviosos_futuros = sorted(datos_futuros.items(), key=lambda x: x[1]['total'], reverse=True)[:10]
-secos_futuros = sorted(datos_futuros.items(), key=lambda x: x[1]['total'])[:10]
+# Identificar los años más lluviosos y los más secos (basados en la media anual)
+lluviosos_pasados = sorted(medias_anuales_por_anio.items(), key=lambda x: x[1], reverse=True)[:10]
+secos_pasados = sorted(medias_anuales_por_anio.items(), key=lambda x: x[1])[:10]
+lluviosos_futuros = sorted(medias_anuales_por_anio.items(), key=lambda x: x[1], reverse=True)[:10]
+secos_futuros = sorted(medias_anuales_por_anio.items(), key=lambda x: x[1])[:10]
 
 # Calcular promedios de precipitación por período (basados en la media anual)
 promedio_pasados = sum(medias_anuales_por_anio.get(anio, 0) for anio in range(2006, 2025)) / len(range(2006, 2025)) if datos_pasados else 0
@@ -321,39 +321,39 @@ for anio in sorted(medias_anuales_por_anio):
 
 # Escribir los resultados globales con formato alineado
 with open(archivo_log, 'a', encoding='utf-8') as log:
-    # Tabla de años pasados más lluviosos
+    # Tabla de años pasados más lluviosos (basados en la media anual)
     log.write("Años pasados más lluviosos (2006-2024):\n")
-    log.write(f"{'Año':<6}{'Total Precipitación (L/m²)':<30}\n")
+    log.write(f"{'Año':<6}{'Media Anual (L/m² al Año)':<30}\n")
     log.write("=" * 36 + "\n")
-    for anio, datos in lluviosos_pasados:
-        log.write(f"{anio:<6}{int(datos['total']):<30}\n")
+    for anio, media in lluviosos_pasados:
+        log.write(f"{anio:<6}{media:<30.2f}\n")
 
     log.write("\n")  # Separador
 
-    # Tabla de años pasados más secos
+    # Tabla de años pasados más secos (basados en la media anual)
     log.write("Años pasados más secos (2006-2024):\n")
-    log.write(f"{'Año':<6}{'Total Precipitación (L/m²)':<30}\n")
+    log.write(f"{'Año':<6}{'Media Anual (L/m² al Año)':<30}\n")
     log.write("=" * 36 + "\n")
-    for anio, datos in secos_pasados:
-        log.write(f"{anio:<6}{int(datos['total']):<30}\n")
+    for anio, media in secos_pasados:
+        log.write(f"{anio:<6}{media:<30.2f}\n")
 
     log.write("\n")  # Separador
 
-    # Tabla de años futuros más lluviosos
+    # Tabla de años futuros más lluviosos (basados en la media anual)
     log.write("Años futuros más lluviosos (2025-2100):\n")
-    log.write(f"{'Año':<6}{'Total Precipitación (L/m²)':<30}\n")
+    log.write(f"{'Año':<6}{'Media Anual (L/m² al Año)':<30}\n")
     log.write("=" * 36 + "\n")
-    for anio, datos in lluviosos_futuros:
-        log.write(f"{anio:<6}{int(datos['total']):<30}\n")
+    for anio, media in lluviosos_futuros:
+        log.write(f"{anio:<6}{media:<30.2f}\n")
 
     log.write("\n")  # Separador
 
-    # Tabla de años futuros más secos
+    # Tabla de años futuros más secos (basados en la media anual)
     log.write("Años futuros más secos (2025-2100):\n")
-    log.write(f"{'Año':<6}{'Total Precipitación (L/m²)':<30}\n")
+    log.write(f"{'Año':<6}{'Media Anual (L/m² al Año)':<30}\n")
     log.write("=" * 36 + "\n")
-    for anio, datos in secos_futuros:
-        log.write(f"{anio:<6}{int(datos['total']):<30}\n")
+    for anio, media in secos_futuros:
+        log.write(f"{anio:<6}{media:<30.2f}\n")
 
     log.write("\n" + "=" * 91 + "\n\n")  # Separador visual para las secciones
 
@@ -375,10 +375,10 @@ with open(archivo_log, 'a', encoding='utf-8') as log:
 
     # Añadir los días con mayor y menor precipitación
     log.write("Días con más y menos precipitación:\n")
-    log.write(f"Día más lluvioso en años pasados (2006-2024): Año {dia_mas_lluvioso_pasado['anio']} - Día {dia_mas_lluvioso_pasado['dia']} con {dia_mas_lluvioso_pasado['precipitacion']} L/m²\n")
-    log.write(f"Día menos lluvioso en años pasados (2006-2024): Año {dia_menos_lluvioso_pasado['anio']} - Día {dia_menos_lluvioso_pasado['dia']} con {dia_menos_lluvioso_pasado['precipitacion']} L/m²\n")
-    log.write(f"Día más lluvioso en años futuros (2025-2100): Año {dia_mas_lluvioso_futuro['anio']} - Día {dia_mas_lluvioso_futuro['dia']} con {dia_mas_lluvioso_futuro['precipitacion']} L/m²\n")
-    log.write(f"Día menos lluvioso en años futuros (2025-2100): Año {dia_menos_lluvioso_futuro['anio']} - Día {dia_menos_lluvioso_futuro['dia']} con {dia_menos_lluvioso_futuro['precipitacion']} L/m²\n")
+    log.write(f"Día más lluvioso en años pasados (2006-2024): Año {dia_mas_lluvioso_pasado['anio']} - Mes {dia_mas_lluvioso_pasado['mes']} - Día {dia_mas_lluvioso_pasado['dia']} con {dia_mas_lluvioso_pasado['precipitacion']} L/m²\n")
+    log.write(f"Día menos lluvioso en años pasados (2006-2024): Año {dia_menos_lluvioso_pasado['anio']} - Mes {dia_menos_lluvioso_pasado['mes']} - Día {dia_menos_lluvioso_pasado['dia']} con {dia_menos_lluvioso_pasado['precipitacion']} L/m²\n")
+    log.write(f"Día más lluvioso en años futuros (2025-2100): Año {dia_mas_lluvioso_futuro['anio']} - Mes {dia_mas_lluvioso_futuro['mes']} - Día {dia_mas_lluvioso_futuro['dia']} con {dia_mas_lluvioso_futuro['precipitacion']} L/m²\n")
+    log.write(f"Día menos lluvioso en años futuros (2025-2100): Año {dia_menos_lluvioso_futuro['anio']} - Mes {dia_menos_lluvioso_futuro['mes']} - Día {dia_menos_lluvioso_futuro['dia']} con {dia_menos_lluvioso_futuro['precipitacion']} L/m²\n")
 
     log.write("\n" + "=" * 91 + "\n\n")
 
@@ -450,25 +450,60 @@ with open(archivo_csv, 'w', newline='', encoding='utf-8') as csvfile:
         anio_anterior = anio
         total_anterior = total_anual
 
-    # Añadir un separador visual
-    writer.writerow([])  # Línea vacía
-    writer.writerow(["Años más lluviosos:"])
-    writer.writerow(['Año', 'Total Precipitación (L/m²)'])
+    # Añadir un separador visual (línea vacía)
+    writer.writerow([])
 
-    # Obtener los 5 años más lluviosos
-    años_mas_lluviosos = sorted(datos_globales.items(), key=lambda x: x[1]['total'], reverse=True)[:5]
-    for anio, datos in años_mas_lluviosos:
-        writer.writerow([anio, int(datos['total'])])
+    # Añadir años más lluviosos (basados en la media anual)
+    writer.writerow(["Años más lluviosos (basados en la media anual):"])
+    writer.writerow(['Año', 'Media Anual (L/m² al Año)'])
 
-    # Añadir un separador visual
-    writer.writerow([])  # Línea vacía
-    writer.writerow(["Años menos lluviosos:"])
-    writer.writerow(['Año', 'Total Precipitación (L/m²)'])
+    # Obtener los 5 años más lluviosos (basados en la media anual)
+    años_mas_lluviosos = sorted(medias_anuales_por_anio.items(), key=lambda x: x[1], reverse=True)[:5]
+    for anio, media in años_mas_lluviosos:
+        writer.writerow([anio, f"{media:.2f}"])
 
-    # Obtener los 5 años menos lluviosos
-    años_menos_lluviosos = sorted(datos_globales.items(), key=lambda x: x[1]['total'])[:5]
-    for anio, datos in años_menos_lluviosos:
-        writer.writerow([anio, int(datos['total'])])
+    # Añadir un separador visual (línea vacía)
+    writer.writerow([])
+
+    # Añadir años menos lluviosos (basados en la media anual)
+    writer.writerow(["Años menos lluviosos (basados en la media anual):"])
+    writer.writerow(['Año', 'Media Anual (L/m² al Año)'])
+
+    # Obtener los 5 años menos lluviosos (basados en la media anual)
+    años_menos_lluviosos = sorted(medias_anuales_por_anio.items(), key=lambda x: x[1])[:5]
+    for anio, media in años_menos_lluviosos:
+        writer.writerow([anio, f"{media:.2f}"])
+
+    # Añadir un separador visual (línea vacía)
+    writer.writerow([])
+
+    # Añadir promedios de precipitación
+    writer.writerow(["Promedios de Precipitación (basados en la media anual):"])
+    writer.writerow(['Período', 'Media Anual (L/m² al Año)'])
+    writer.writerow(["Años pasados (2006-2024)", f"{promedio_pasados:.2f}"])
+    writer.writerow(["Años futuros (2025-2100)", f"{promedio_futuros:.2f}"])
+
+    # Añadir un separador visual (línea vacía)
+    writer.writerow([])
+
+    # Añadir mayor incremento y decremento de precipitación
+    writer.writerow(["Mayor Incremento y Decremento de Precipitación (basados en la media anual):"])
+    writer.writerow(['Tipo', 'Año', 'Cambio (L/m² al Año)'])
+    if mayor_incremento['anio'] is not None:
+        writer.writerow(["Mayor incremento", mayor_incremento['anio'], f"{mayor_incremento['incremento']:.2f}"])
+    if mayor_decremento['anio'] is not None:
+        writer.writerow(["Mayor decremento", mayor_decremento['anio'], f"{mayor_decremento['decremento']:.2f}"])
+
+    # Añadir un separador visual (línea vacía)
+    writer.writerow([])
+
+    # Añadir días con más y menos precipitación
+    writer.writerow(["Días con más y menos precipitación:"])
+    writer.writerow(['Tipo', 'Año', 'Mes', 'Día', 'Precipitación (L/m²)'])
+    writer.writerow(["Día más lluvioso (2006-2024)", dia_mas_lluvioso_pasado['anio'], dia_mas_lluvioso_pasado['mes'], dia_mas_lluvioso_pasado['dia'], f"{dia_mas_lluvioso_pasado['precipitacion']:.2f}"])
+    writer.writerow(["Día menos lluvioso (2006-2024)", dia_menos_lluvioso_pasado['anio'], dia_menos_lluvioso_pasado['mes'], dia_menos_lluvioso_pasado['dia'], f"{dia_menos_lluvioso_pasado['precipitacion']:.2f}"])
+    writer.writerow(["Día más lluvioso (2025-2100)", dia_mas_lluvioso_futuro['anio'], dia_mas_lluvioso_futuro['mes'], dia_mas_lluvioso_futuro['dia'], f"{dia_mas_lluvioso_futuro['precipitacion']:.2f}"])
+    writer.writerow(["Día menos lluvioso (2025-2100)", dia_menos_lluvioso_futuro['anio'], dia_menos_lluvioso_futuro['mes'], dia_menos_lluvioso_futuro['dia'], f"{dia_menos_lluvioso_futuro['precipitacion']:.2f}"])
 
 # Generar gráficos
 años = sorted(datos_globales.keys())

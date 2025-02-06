@@ -95,18 +95,35 @@ Año,Total Precipitación (L/m²),Media Anual (L/m² al Año),Tasa de Variación
 2099,62184030,322.58,34.73,Seco
 2100,60598786,314.36,-2.55,Seco
 
-Años más lluviosos:
-Año,Total Precipitación (L/m²)
-2022,85467456
-2027,83911396
-2006,81652279
-2081,79772225
-2092,79261202
+Años más lluviosos (basados en la media anual):
+Año,Media Anual (L/m² al Año)
+2022,443.37
+2027,435.30
+2006,423.58
+2081,413.83
+2092,411.17
 
-Años menos lluviosos:
-Año,Total Precipitación (L/m²)
-2079,36625056
-2096,39309145
-2097,39648178
-2076,40465080
-2087,44692983
+Años menos lluviosos (basados en la media anual):
+Año,Media Anual (L/m² al Año)
+2079,190.00
+2096,203.92
+2097,205.68
+2076,209.92
+2087,231.85
+
+Promedios de Precipitación (basados en la media anual):
+Período,Media Anual (L/m² al Año)
+Años pasados (2006-2024),333.51
+Años futuros (2025-2100),309.25
+
+Mayor Incremento y Decremento de Precipitación (basados en la media anual):
+Tipo,Año,Cambio (L/m² al Año)
+Mayor incremento,2092,149.40
+Mayor decremento,2023,-196.25
+
+Días con más y menos precipitación:
+Tipo,Año,Mes,Día,Precipitación (L/m²)
+Día más lluvioso (2006-2024),2013,11,19,807.00
+Día menos lluvioso (2006-2024),2006,1,1,0.00
+Día más lluvioso (2025-2100),2073,12,31,1343.00
+Día menos lluvioso (2025-2100),2025,1,1,0.00
